@@ -1,0 +1,59 @@
+PODS:
+  - KeychainAccess (3.1.0)
+  - Realm (3.1.0):
+    - Realm/Headers (= 3.1.0)
+  - Realm/Headers (3.1.0)
+  - RealmSwift (3.1.0):
+    - Realm (= 3.1.0)
+  - RxCocoa (4.0.0):
+    - RxSwift (~> 4.0)
+  - RxRealm (0.7.5):
+    - RealmSwift (~> 3.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
+  - SwiftDate (4.5.1)
+  - SwiftyTimer (2.0.0)
+
+DEPENDENCIES:
+  - KeychainAccess
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - RxCocoa
+  - RxRealm
+  - RxSwift
+  - SwiftDate
+  - SwiftyTimer
+
+EXTERNAL SOURCES:
+  Realm:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  Realm:
+    :commit: 6babc9308888d5439f4dac4467289357e7fab96c
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :commit: 6babc9308888d5439f4dac4467289357e7fab96c
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
+SPEC CHECKSUMS:
+  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+  Realm: 09513d7c054678d65cd02ce09871f805b0d758ac
+  RealmSwift: d4db6bba6d5f1f5363e5a9ad607c11a823ffa34f
+  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  SwiftDate: 7b56d42a221f582047287deb256b23fc5ed49a60
+  SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
+
+PODFILE CHECKSUM: 22525f35c35b7560f224d3e89f00c329df5246cf
+
+COCOAPODS: 1.3.1

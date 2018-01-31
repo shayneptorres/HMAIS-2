@@ -1,0 +1,6 @@
+framework module Pods_HMAISTests {
+  umbrella header "Pods-HMAISTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
