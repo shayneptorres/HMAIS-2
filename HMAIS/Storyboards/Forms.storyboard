@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L93-Ex-H7s">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,17 +9,52 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Black</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Spending Item Form-->
+        <!--Spending Item FormVC-->
         <scene sceneID="Kfx-ry-x3D">
             <objects>
-                <viewController id="L93-Ex-H7s" customClass="SpendingItemForm" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SpendingForm" useStoryboardIdentifierAsRestorationIdentifier="YES" id="L93-Ex-H7s" customClass="SpendingItemFormVC" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QpJ-QG-Ci2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UIS-7O-Mse">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3Q-KO-4HA">
+                                <rect key="frame" x="20" y="603" width="335" height="44"/>
+                                <color key="backgroundColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="r1I-Yf-wmS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Add item">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9371530414" green="0.93731355670000005" blue="0.93714290860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hK3-hf-eEc" firstAttribute="bottom" secondItem="UIS-7O-Mse" secondAttribute="bottom" id="9sz-Ul-2Ys"/>
+                            <constraint firstItem="Y3Q-KO-4HA" firstAttribute="leading" secondItem="hK3-hf-eEc" secondAttribute="leading" constant="20" id="OqK-hH-TwM"/>
+                            <constraint firstItem="hK3-hf-eEc" firstAttribute="trailing" secondItem="UIS-7O-Mse" secondAttribute="trailing" id="SHR-Zc-m8p"/>
+                            <constraint firstItem="UIS-7O-Mse" firstAttribute="leading" secondItem="hK3-hf-eEc" secondAttribute="leading" id="UbM-5T-YyS"/>
+                            <constraint firstItem="UIS-7O-Mse" firstAttribute="top" secondItem="hK3-hf-eEc" secondAttribute="top" id="fRP-Zd-TEy"/>
+                            <constraint firstItem="hK3-hf-eEc" firstAttribute="trailing" secondItem="Y3Q-KO-4HA" secondAttribute="trailing" constant="20" id="tNp-Kh-tjj"/>
+                            <constraint firstItem="hK3-hf-eEc" firstAttribute="bottom" secondItem="Y3Q-KO-4HA" secondAttribute="bottom" constant="20" id="wga-ir-2dW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hK3-hf-eEc"/>
                     </view>
+                    <connections>
+                        <outlet property="submitBtn" destination="Y3Q-KO-4HA" id="R1Z-1R-hUJ"/>
+                        <outlet property="tableView" destination="UIS-7O-Mse" id="jl8-7x-RAs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mX4-TN-OLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

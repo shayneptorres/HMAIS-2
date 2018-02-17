@@ -19,10 +19,18 @@ class ItemList : Object, RealmManagable, ListItemTypable, Totalable, Summarizabl
     @objc dynamic var updatedAt = Date()
     @objc dynamic var createdAt = Date()
     @objc dynamic var type = 1
+    @objc dynamic var groupID = 0
     var items = List<Item>()
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
+    func add(item: Item){
+        let realm = try! Realm()
+        try! realm.write {
+            self.items.append(item)
+            self.updatedAt = Date()
+        }
+    }
 }

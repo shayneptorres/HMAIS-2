@@ -18,9 +18,8 @@ class Item : Object, RealmManagable, Totalable {
     @objc dynamic var desc = String()
     @objc dynamic var updatedAt = Date()
     @objc dynamic var createdAt = Date()
-    @objc dynamic var quantity = Double()
+    @objc dynamic var quantity: Double = 1
     @objc dynamic var price = Double()
-    @objc dynamic var tax = Double()
     @objc dynamic var completed = Bool()
     
     override static func primaryKey() -> String? {

@@ -9,17 +9,16 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import SwiftDate
 
 protocol ListsVMInputs {
     func viewDidLoad()
-    func listWasUpdated()
-    func beginEditing()
-    func endEditing()
+    func listWasAdded()
 }
 
 protocol ListsVMOutputs {
     var reloadTable: PublishSubject<[ItemList]> { get }
-    var changeDisplay: PublishSubject<CollectionDisplayType> { get }
+    var addList: PublishSubject<[ItemList]> { get }
 }
 
 protocol ListVMType: ListsVMInputs, ListsVMOutputs {
@@ -30,39 +29,27 @@ protocol ListVMType: ListsVMInputs, ListsVMOutputs {
 class ListsVM: ListVMType {
     
     var reloadTable = PublishSubject<[ItemList]>()
-    var changeDisplay = PublishSubject<CollectionDisplayType>()
+    var addList = PublishSubject<[ItemList]>()
     var inputs: ListsVMInputs { return self }
     var outputs: ListsVMOutputs { return self }
     
     func viewDidLoad() {
         // fetch lists
-        let lists = ItemList.getAll()
+        let lists = fetchLists()
         DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
             s.reloadTable.onNext(lists)
         }
     }
     
-    func listWasUpdated() {
-        // fetch lists
-        let lists = ItemList.getAll()
+    func listWasAdded() {
+        let lists = fetchLists()
         DispatchQueue.main.async { [weak self] in
             guard let s = self else { return }
-            s.reloadTable.onNext(lists)
+            s.addList.onNext(lists)
         }
     }
-    
-    func beginEditing() {
-        DispatchQueue.main.async { [weak self] in
-            guard let s = self else { return }
-            s.changeDisplay.onNext(.editing)
-        }
-    }
-    
-    func endEditing() {
-        DispatchQueue.main.async { [weak self] in
-            guard let s = self else { return }
-            s.changeDisplay.onNext(.displaying)
-        }
+    func fetchLists() -> [ItemList] {
+        return ItemList.getAll().sorted(by: { l1, l2 in l1.createdAt > l2.createdAt })
     }
 }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MiniForm" customModule="HMAIS" customModuleProvider="target">
+            <connections>
+                <outlet property="addBtn" destination="VUR-Gs-k59" id="8oW-xN-Jf3"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="mWF-5c-y6c"/>
+                <outlet property="formTextField" destination="qOd-OT-pe0" id="Vqr-Ws-Dij"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="377" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qOd-OT-pe0">
+                    <rect key="frame" x="16" y="0.0" width="301.5" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="S6f-6v-kz7"/>
+                    </constraints>
+                    <color key="textColor" red="0.1333139837" green="0.13334444170000001" blue="0.1333120763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zmE-sE-nAK">
+                    <rect key="frame" x="317.5" y="0.0" width="59.5" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUR-Gs-k59">
+                            <rect key="frame" x="17" y="8" width="27" height="31"/>
+                            <state key="normal" image="up_arrow"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="VUR-Gs-k59" firstAttribute="top" secondItem="zmE-sE-nAK" secondAttribute="top" constant="8" id="Pih-LO-OcR"/>
+                        <constraint firstItem="VUR-Gs-k59" firstAttribute="centerX" secondItem="zmE-sE-nAK" secondAttribute="centerX" id="oGe-Rz-EIN"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="zmE-sE-nAK" secondAttribute="bottom" id="7mx-V7-cIH"/>
+                <constraint firstItem="zmE-sE-nAK" firstAttribute="leading" secondItem="qOd-OT-pe0" secondAttribute="trailing" id="DvO-u3-weY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qOd-OT-pe0" secondAttribute="bottom" constant="6" id="E1Z-0I-Zo2"/>
+                <constraint firstItem="qOd-OT-pe0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="4:5" id="F9G-Ja-8op"/>
+                <constraint firstItem="zmE-sE-nAK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="GC2-eX-qpF"/>
+                <constraint firstItem="qOd-OT-pe0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Nba-rH-TRv"/>
+                <constraint firstItem="qOd-OT-pe0" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="O1O-l7-3fw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zmE-sE-nAK" secondAttribute="trailing" id="iOk-DX-lpL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="34.5" y="342"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="up_arrow" width="27" height="31"/>
+    </resources>
+</document>

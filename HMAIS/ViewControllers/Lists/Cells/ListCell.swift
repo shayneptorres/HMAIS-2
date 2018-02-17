@@ -2,7 +2,7 @@
 //  ListCell.swift
 //  HMAIS
 //
-//  Created by Shayne Torres on 1/29/18.
+//  Created by Shayne Torres on 2/17/18.
 //  Copyright © 2018 sptorres. All rights reserved.
 //
 
@@ -10,13 +10,19 @@ import UIKit
 
 class ListCell: UITableViewCell {
     
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var count: UILabel!
+    @IBOutlet weak var container: UIView!
+    @IBOutlet weak var indicatorTab: UIView!
+    @IBOutlet weak var indicatorImageView: UIImageView!
+    @IBOutlet weak var listNameLabel: UILabel!
     
-    func configure(with itemList: ItemList?) {
-        guard let list = itemList else { return }
-        name.text = list.name
-        count.text = "\(list.items.count) items"
+    func configure(withList list: ItemList) {
+        indicatorTab.backgroundColor = list.listItemType.indicatorColor
+        indicatorImageView.image = list.listItemType.indicatorImage
+        listNameLabel.text = list.name
+        container.layer.cornerRadius = 8
+        container.applyShadow(.normal(.bottom))
+        self.selectionStyle = .none
     }
+    
     
 }

@@ -16,6 +16,7 @@ target 'HMAIS' do
   pod 'RxCocoa'
   pod 'RxRealm'
   pod 'KeychainAccess'
+  pod 'IHKeyboardAvoiding'
 
   target 'HMAISTests' do
     inherit! :search_paths

@@ -8,6 +8,15 @@
 
 import Foundation
 
+protocol Identifiable {
+}
+
+extension Identifiable {
+    static var id: String {
+        return String.init(describing: Self.self)
+    }
+}
+
 protocol ListItemTypable {
     var listItemType: ListItemType { get }
 }
@@ -24,7 +33,7 @@ protocol Totalable {
 
 extension Totalable where Self: Item {
     var total: Double {
-        return price + (price*tax)
+        return price
     }
 }
 
@@ -48,21 +57,34 @@ extension Summarizable where Self: ItemList {
             })
             return "\(completed.count) out of \(items.count) completed"
         } else {
-            return "Total: \(total)"
+            var totalCurrency = "\(total)".toCurrency()
+            return "Total: \(totalCurrency)"
         }
     }
 }
 
 import UIKit
 
-typealias TableViewCellConfig = (nibName: String, cellID: CellIds)
+typealias TableViewCellConfig = (nibName: String, cellID: CellID)
+
+struct CellConfig {
+    var nibName: String
+    var cellID: CellID
+    var isHeaderFooter: Bool
+    
+    init(nibName: String, cellID: CellID, isHeaderFooter: Bool = false) {
+        self.nibName = nibName
+        self.cellID = cellID
+        self.isHeaderFooter = isHeaderFooter
+    }
+}
 
 protocol TableViewManager {
 }
 
 extension TableViewManager where Self: UITableViewDelegate & UITableViewDataSource {
     
-    func configure(with table: UITableView, andWith configs: [TableViewCellConfig] = [], autoDimension: Bool = true) {
+    func configure(with table: UITableView, andWith configs: [CellConfig] = [], autoDimension: Bool = true) {
         table.delegate = self
         table.dataSource = self
         
@@ -76,8 +98,44 @@ extension TableViewManager where Self: UITableViewDelegate & UITableViewDataSour
         
         configs.forEach { config in
             nib = UINib(nibName: config.nibName, bundle: nil)
-            table.register(nib, forCellReuseIdentifier: config.cellID.rawValue)
+            if config.isHeaderFooter {
+                table.register(nib, forHeaderFooterViewReuseIdentifier: config.cellID.rawValue)
+            } else {
+                table.register(nib, forCellReuseIdentifier: config.cellID.rawValue)
+            }
         }
     }
     
 }
+
+@objc protocol KeyboardObserver {
+    @objc func keyboardWillShow(_ notification: Notification)
+    @objc func keyboardWillHide(_ notification: Notification)
+}
+
+extension KeyboardObserver where Self: UIViewController {
+    
+    func observeKeyboard() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: NSNotification.Name.UIKeyboardWillShow,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: NSNotification.Name.UIKeyboardWillHide,
+            object: nil
+        )
+    }
+}
+
+protocol MiniFormDelegate {
+    func miniFormDidSubmit(text: String)
+}
+
+
+
+

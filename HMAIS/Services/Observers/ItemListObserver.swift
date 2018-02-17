@@ -26,9 +26,11 @@ class ListObserver {
         let lists = realm.objects(ItemList.self)
         
         Observable.collection(from: lists)
-            .subscribe(onNext: { [weak self] p in
+            .subscribe(onNext: { [weak self] item in
                 guard let s = self, let delegate = s.delegate else { return }
-                delegate.listWasUpdated()
+                DispatchQueue.main.async {
+                    delegate.listWasUpdated()
+                }
             }).disposed(by: trash)
     }
     

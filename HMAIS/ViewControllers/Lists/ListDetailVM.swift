@@ -11,13 +11,15 @@ import RxSwift
 import RxCocoa
 
 protocol ListDetailVMInputs {
-    func viewDidLoad()
+    func viewDidLoad(list: ItemList?)
+    func itemWasAdded(toList list: ItemList)
+    func listWasConverted(id: Int)
+    func reloadList(id: Int)
 }
 
 protocol ListDetailVMOutputs {
     var reloadTable: PublishSubject<[Item]> { get }
-    var reloadInfo: PublishSubject<ItemList?> { get }
-    var changeDisplay: PublishSubject<CollectionDisplayType> { get }
+    var addItemReload: PublishSubject<[Item]> { get }
 }
 
 protocol ListDetailVMType: ListDetailVMInputs, ListDetailVMOutputs {
@@ -28,18 +30,40 @@ protocol ListDetailVMType: ListDetailVMInputs, ListDetailVMOutputs {
 class ListDetailVM: ListDetailVMType {
     
     var reloadTable = PublishSubject<[Item]>()
-    var reloadInfo = PublishSubject<ItemList?>()
+    var addItemReload =  PublishSubject<[Item]>()
     var changeDisplay = PublishSubject<CollectionDisplayType>()
     var inputs: ListDetailVMInputs { return self }
     var outputs: ListDetailVMOutputs { return self }
-    var list: ItemList?
     
     init() {
     }
     
-    func viewDidLoad() {
-        reloadInfo.onNext(list)
+    private func fetchList(withID id: Int) -> ItemList? {
+        return ItemList.getOne(withId: "\(id)")
+    }
+    
+    private func fetchItems(withID id: Int) -> [Item] {
+        let list = ItemList.getOne(withId: "\(id)")
+        return list?.items.toArray().sorted(by: { i1, i2 in i1.createdAt > i2.createdAt }) ?? []
+    }
+    
+    func viewDidLoad(list: ItemList?) {
         reloadTable.onNext(list?.items.toArray() ?? [])
+    }
+    
+    func reloadList(id: Int) {
+        let items = fetchItems(withID: id)
+        reloadTable.onNext(items)
+    }
+    
+    func itemWasAdded(toList list: ItemList) {
+        let items = fetchItems(withID: list.id)
+        addItemReload.onNext(items)
+    }
+    
+    func listWasConverted(id: Int) {
+        let items = fetchItems(withID: id)
+        reloadTable.onNext(items)
     }
     
 }
