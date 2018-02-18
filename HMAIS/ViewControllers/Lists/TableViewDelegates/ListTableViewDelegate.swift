@@ -19,9 +19,10 @@ class ListTableViewDelegate: NSObject {
         }
     }
     
+    var sectionAddBtnCompletion: ((_ section: ListSection) -> ())?
     var reloadCompletion: (() -> ())?
     
-    func configure(withTable table: UITableView, data: [Item], animated: Bool, reloadComp: (() -> ())? = nil, infoBtnComp: ((_ item: Item) -> ())? = nil) {
+    func configure(withTable table: UITableView, data: [Item] = [], sections: [ListSection] = [], animated: Bool, reloadComp: (() -> ())? = nil, infoBtnComp: ((_ item: Item) -> ())? = nil) {
     }
     
     func registerTableViewCells(forTableView tableView: UITableView) {

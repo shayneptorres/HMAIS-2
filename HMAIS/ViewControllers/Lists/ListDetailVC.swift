@@ -42,6 +42,7 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
     }
     
     var listTableDelegate: ListTableViewDelegate?
+    var editingSection: ListSection?
     let viewModel = ListDetailVM()
     var list: ItemList?
     let trash = DisposeBag()
@@ -51,10 +52,21 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
         
         listTableDelegate = ShoppingListTableViewDelegate()
         
+        listTableDelegate?.sectionAddBtnCompletion = { section in
+            self.editingSection = section
+            self.miniForm.beginEditing()
+        }
+        
         guard
             let delegate = listTableDelegate,
             let list = list
         else { return }
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings_btn_three_dots.png"), style: .plain, target: self, action: #selector(showListSettingsAlert))
+        
+        if !list.sections.isEmpty {
+            addBtn.isHidden = true
+        }
         
         delegate.registerTableViewCells(forTableView: tableView)
         
@@ -80,6 +92,39 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
                             })
         }).disposed(by: trash)
         
+        viewModel.outputs.reloadTableWithSections.subscribe(onNext: { sections in
+            delegate.configure(withTable: self.tableView,
+                               sections: sections,
+                               animated: true,
+                               reloadComp: {
+                                self.animateReloadTable()
+            }, infoBtnComp: { i in
+                self.showAlert(forItem: i)
+            })
+        }).disposed(by: trash)
+        
+        viewModel.outputs.reloadTableWithAddedSection.subscribe(onNext: { sections in
+            delegate.configure(withTable: self.tableView,
+                               sections: sections,
+                               animated: true,
+                               reloadComp: {
+                                self.reloadForNewSection()
+            }, infoBtnComp: { i in
+                self.showAlert(forItem: i)
+            })
+        }).disposed(by: trash)
+        
+        viewModel.outputs.reloadSection.subscribe(onNext: { (section, data) in
+            delegate.configure(withTable: self.tableView,
+                               sections: data,
+                               animated: true,
+                               reloadComp: {
+                                self.animateReloadSection(section: section)
+            }, infoBtnComp: { i in
+                self.showAlert(forItem: i)
+            })
+        }).disposed(by: trash)
+        
         viewModel.inputs.viewDidLoad(list: list)
         
     }
@@ -89,20 +134,68 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
         observeKeyboard()
     }
     
-    func animateReloadTable() {
-        tableView.beginUpdates()
-        tableView.reloadSections([0], with: .automatic)
-        tableView.endUpdates()
+    func reloadForNewSection() {
+        UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() }, completion: nil)
     }
     
+    func animateReloadTable() {
+        guard let list = list else { return }
+        UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() }, completion: nil)
+//        tableView.beginUpdates()
+//        if list.sections.isEmpty {
+//            tableView.reloadSections(IndexSet(integersIn: 0...list.sections.count), with: .automatic)
+//        } else {
+//            self.tableView.reloadSections([0], with: .automatic)
+//        }
+//        tableView.endUpdates()
+    }
+    
+    func animateReloadSection(section: Int) {
+        UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() }, completion: nil)
+//        tableView.beginUpdates()
+//        tableView.reloadSections([section], with: .automatic)
+//        tableView.endUpdates()
+    }
+    
+    
     func showAlert(forItem item: Item) {
-        let alert = UIAlertController(title: "\(item.name)", message: "Actions for \(item.name)", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "\(item.name)", message: nil, preferredStyle: .actionSheet)
         let editAction = UIAlertAction(title: "Edit", style: .default) { _ in }
-        let convertAction = UIAlertAction(title: "Convert to budget list", style: .default) { _ in }
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in }
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            item.delete()
+            self.viewModel.reloadList(withListID: self.list?.id ?? 0)
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
         alert.addAction(editAction)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+    
+    @objc func showListSettingsAlert() {
+        guard let list = list else { return }
+        let alert = UIAlertController(title: "\(list.name)", message: nil, preferredStyle: .actionSheet)
+        let convertAction = UIAlertAction(title: "Convert to budget list", style: .default) { _ in }
+        let addSectionAction = UIAlertAction(title: "Add section", style: .default) { _ in
+            let formSB = UIStoryboard(name: "Forms", bundle: nil)
+            let mainSB = UIStoryboard(name: "Main", bundle: nil)
+            guard
+                let modal = mainSB.instantiateViewController(withIdentifier: "ModalForm") as? ModalFormNav,
+                let addSection = formSB.instantiateViewController(withIdentifier: "AddSectionVC") as? AddSectionFormVC,
+                let nav = self.navigationController,
+                let tab = nav.parent as? UITabBarController
+            else { return }
+            modal.modalTransitionStyle = .crossDissolve
+            addSection.list = list
+            addSection.delegate = self
+            modal.present(addSection, from: tab, animated: true)
+        }
+        let editAction = UIAlertAction(title: "Edit", style: .default) { _ in }
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        alert.addAction(addSectionAction)
         alert.addAction(convertAction)
+        alert.addAction(editAction)
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
@@ -143,11 +236,23 @@ extension ListDetailVC: MiniFormDelegate {
     
     func miniFormDidSubmit(text: String) {
         guard text.trimmingCharacters(in: CharacterSet(charactersIn: " ")) != "", let list = list else { return }
+        
         var newItem = Item()
         newItem.name = text
-        newItem.autoincrementID()
-        newItem.save()
-        list.add(item: newItem)
+        
+        if editingSection != nil {
+            editingSection?.addItem(newItem)
+        } else {
+            list.add(item: newItem)
+        }
+        
         viewModel.inputs.itemWasAdded(toList: list)
+    }
+}
+
+extension ListDetailVC: AddSectionDelegate {
+    func sectionWasAdded() {
+        guard let list = list else { return }
+        self.viewModel.inputs.reloadWithNewSection(withListID: list.id)
     }
 }

@@ -60,6 +60,7 @@ enum CellID: String {
     case formEntryCell = "formEntryCell"
     // Items
     case shoppingItemCell = "shoppingItemCell"
+    case shoppingSectionHeader = "shoppingSectionHeader"
 }
 
 enum EmptyCellMessage {

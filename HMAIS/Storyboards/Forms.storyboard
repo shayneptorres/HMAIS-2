@@ -12,6 +12,7 @@
     <customFonts key="customFonts">
         <array key="Avenir.ttc">
             <string>Avenir-Black</string>
+            <string>Avenir-Book</string>
         </array>
     </customFonts>
     <scenes>
@@ -59,6 +60,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mX4-TN-OLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-425" y="86"/>
+        </scene>
+        <!--Add Section FormVC-->
+        <scene sceneID="SwJ-BM-gkP">
+            <objects>
+                <viewController storyboardIdentifier="AddSectionVC" id="2SG-fy-r4c" customClass="AddSectionFormVC" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8JI-GW-nqW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VOe-ZT-2tF">
+                                <rect key="frame" x="16" y="46" width="343" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="LtT-gM-xtm"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add section" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vph-72-vfp">
+                                <rect key="frame" x="144.5" y="8" width="86" height="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fy1-iP-jdw">
+                                <rect key="frame" x="16" y="90" width="343" height="2"/>
+                                <color key="backgroundColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="ZUM-Xo-vVD"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRe-q5-7k9">
+                                <rect key="frame" x="16" y="108" width="343" height="44"/>
+                                <color key="backgroundColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Bur-3C-9jF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fy1-iP-jdw" firstAttribute="top" secondItem="VOe-ZT-2tF" secondAttribute="bottom" id="3tY-cJ-zie"/>
+                            <constraint firstItem="VOe-ZT-2tF" firstAttribute="top" secondItem="Vph-72-vfp" secondAttribute="bottom" constant="16" id="BZz-wY-56D"/>
+                            <constraint firstItem="Vph-72-vfp" firstAttribute="top" secondItem="8JI-GW-nqW" secondAttribute="top" constant="8" id="KJd-sI-Dfg"/>
+                            <constraint firstItem="VOe-ZT-2tF" firstAttribute="leading" secondItem="gij-Oa-1Kl" secondAttribute="leading" constant="16" id="NQZ-6D-7as"/>
+                            <constraint firstItem="cRe-q5-7k9" firstAttribute="top" secondItem="fy1-iP-jdw" secondAttribute="bottom" constant="16" id="P85-vT-eEl"/>
+                            <constraint firstItem="gij-Oa-1Kl" firstAttribute="trailing" secondItem="cRe-q5-7k9" secondAttribute="trailing" constant="16" id="PJf-hf-KaJ"/>
+                            <constraint firstItem="gij-Oa-1Kl" firstAttribute="trailing" secondItem="VOe-ZT-2tF" secondAttribute="trailing" constant="16" id="QC6-nN-Q9d"/>
+                            <constraint firstItem="gij-Oa-1Kl" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Vph-72-vfp" secondAttribute="trailing" constant="16" id="ToY-cl-O2F"/>
+                            <constraint firstItem="fy1-iP-jdw" firstAttribute="leading" secondItem="gij-Oa-1Kl" secondAttribute="leading" constant="16" id="eju-ya-o7T"/>
+                            <constraint firstItem="Vph-72-vfp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gij-Oa-1Kl" secondAttribute="leading" constant="16" id="gSP-ik-dAc"/>
+                            <constraint firstItem="Vph-72-vfp" firstAttribute="centerX" secondItem="gij-Oa-1Kl" secondAttribute="centerX" id="i6N-3s-hwJ"/>
+                            <constraint firstItem="gij-Oa-1Kl" firstAttribute="trailing" secondItem="fy1-iP-jdw" secondAttribute="trailing" constant="16" id="v40-pY-jpe"/>
+                            <constraint firstItem="cRe-q5-7k9" firstAttribute="leading" secondItem="gij-Oa-1Kl" secondAttribute="leading" constant="16" id="vCU-jf-2J6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gij-Oa-1Kl"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YDL-Qb-JFJ"/>
+                    <connections>
+                        <outlet property="addBtn" destination="cRe-q5-7k9" id="2ID-J1-6mF"/>
+                        <outlet property="textField" destination="VOe-ZT-2tF" id="v6P-bW-Xu4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kVP-YJ-sSc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-423.19999999999999" y="875.71214392803608"/>
         </scene>
     </scenes>
 </document>

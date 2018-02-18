@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xWy-ln-JIH" customClass="ListSectionHeader" customModule="HMAIS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="432" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJU-UC-M7M">
+                    <rect key="frame" x="0.0" y="0.0" width="432" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYL-xa-qMQ">
+                    <rect key="frame" x="16" y="14" width="39" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hvz-9l-DKE">
+                    <rect key="frame" x="394" y="12.5" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="V5N-AA-X1m"/>
+                        <constraint firstAttribute="width" constant="25" id="v0F-cF-iZP"/>
+                    </constraints>
+                    <state key="normal" image="add_circle"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Q6f-D5-ae9" firstAttribute="trailing" secondItem="Hvz-9l-DKE" secondAttribute="trailing" constant="13" id="4eA-Bx-dmE"/>
+                <constraint firstItem="FYL-xa-qMQ" firstAttribute="leading" secondItem="Q6f-D5-ae9" secondAttribute="leading" constant="16" id="5i0-GQ-qqi"/>
+                <constraint firstItem="Hvz-9l-DKE" firstAttribute="centerY" secondItem="Q6f-D5-ae9" secondAttribute="centerY" id="FIX-vt-zJx"/>
+                <constraint firstItem="Q6f-D5-ae9" firstAttribute="trailing" secondItem="TJU-UC-M7M" secondAttribute="trailing" id="cdX-Uu-2t0"/>
+                <constraint firstItem="TJU-UC-M7M" firstAttribute="top" secondItem="xWy-ln-JIH" secondAttribute="top" id="mK4-tJ-4ET"/>
+                <constraint firstItem="TJU-UC-M7M" firstAttribute="leading" secondItem="Q6f-D5-ae9" secondAttribute="leading" id="qE6-WK-C2J"/>
+                <constraint firstItem="FYL-xa-qMQ" firstAttribute="centerY" secondItem="Q6f-D5-ae9" secondAttribute="centerY" id="qJH-93-FPy"/>
+                <constraint firstAttribute="bottom" secondItem="TJU-UC-M7M" secondAttribute="bottom" id="wF7-LO-Hxn"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q6f-D5-ae9"/>
+            <connections>
+                <outlet property="addBtn" destination="Hvz-9l-DKE" id="cwp-md-sBC"/>
+                <outlet property="nameLabel" destination="FYL-xa-qMQ" id="hhK-A4-QJ9"/>
+            </connections>
+            <point key="canvasLocation" x="124" y="-48"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="add_circle" width="35" height="35"/>
+    </resources>
+</document>

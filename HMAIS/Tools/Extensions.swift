@@ -91,3 +91,26 @@ extension UIView {
         
     }
 }
+
+extension UIResponder {
+    
+    //Class var not supported in 1.0
+    private struct CurrentFirstResponder {
+        weak static var currentFirstResponder: UIResponder?
+    }
+    
+    private class var currentFirstResponder: UIResponder? {
+        get { return CurrentFirstResponder.currentFirstResponder }
+        set(newValue) { CurrentFirstResponder.currentFirstResponder = newValue }
+    }
+    
+    class func getCurrentFirstResponder() -> UIResponder? {
+        currentFirstResponder = nil
+        UIApplication.shared.sendAction(#selector(UIResponder.findFirstResponder), to: nil, from: nil, for: nil)
+        return currentFirstResponder
+    }
+    
+    @objc func findFirstResponder() {
+        UIResponder.currentFirstResponder = self
+    }
+}

@@ -21,15 +21,56 @@ class ItemList : Object, RealmManagable, ListItemTypable, Totalable, Summarizabl
     @objc dynamic var type = 1
     @objc dynamic var groupID = 0
     var items = List<Item>()
+    var sections = List<ListSection>()
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
     func add(item: Item){
+        var newItem = item
+        newItem.autoincrementID()
+        newItem.save()
         let realm = try! Realm()
         try! realm.write {
-            self.items.append(item)
+            self.items.append(newItem)
+            self.updatedAt = Date()
+        }
+    }
+    
+    func addSection(section: ListSection) {
+        var newSection = section
+        newSection.listID = self.id
+        newSection.autoincrementID()
+        newSection.save()
+        
+        let realm = try! Realm()
+        
+        if self.sections.isEmpty {
+            self.items.forEach({ item in
+                var updatableItem = item
+                updatableItem.update(completion: { updatedItem in
+                    updatedItem.sectionID = newSection.id
+                })
+            })
+        }
+        
+        try! realm.write {
+            self.sections.append(newSection)
+            self.updatedAt = Date()
+        }
+        
+        
+    }
+    
+    func add(item: Item, toSectionWithID id: Int) {
+        var newItem = item
+        newItem.sectionID = id
+        newItem.autoincrementID()
+        newItem.save()
+        let realm = try! Realm()
+        try! realm.write {
+            self.items.append(newItem)
             self.updatedAt = Date()
         }
     }
