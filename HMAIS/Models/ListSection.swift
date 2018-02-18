@@ -25,7 +25,7 @@ class ListSection: Object, RealmManagable {
     
     func getItems() -> [Item] {
         guard let list = ItemList.getOne(withId: "\(listID)") else { return [] }
-        return list.items.filter({ item in item.sectionID == self.id })
+        return list.items.filter({ item in item.sectionID == self.id }).sorted(by: { i1, i2 in i1.createdAt > i2.createdAt })
     }
     
     func addItem(_ item: Item) {

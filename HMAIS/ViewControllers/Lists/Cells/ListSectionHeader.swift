@@ -13,6 +13,7 @@ import RxSwift
 class ListSectionHeader: UITableViewHeaderFooterView {
     
     
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addBtn: UIButton! {
         didSet {
@@ -28,6 +29,7 @@ class ListSectionHeader: UITableViewHeaderFooterView {
     func configure(withName name: String, completion: (() -> ())?) {
         nameLabel.text = name
         self.addCompletion = completion
+        container.applyShadow(.light(.bottom))
     }
 
 }

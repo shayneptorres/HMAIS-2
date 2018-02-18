@@ -11,7 +11,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="Avenir.ttc">
-            <string>Avenir-Book</string>
+            <string>Avenir-Black</string>
         </array>
     </customFonts>
     <objects>
@@ -22,17 +22,17 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJU-UC-M7M">
-                    <rect key="frame" x="0.0" y="0.0" width="432" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="432" height="46"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYL-xa-qMQ">
-                    <rect key="frame" x="16" y="14" width="39" height="22"/>
-                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                    <rect key="frame" x="16" y="12" width="41" height="22"/>
+                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hvz-9l-DKE">
-                    <rect key="frame" x="394" y="12.5" width="25" height="25"/>
+                    <rect key="frame" x="394" y="10.5" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="V5N-AA-X1m"/>
                         <constraint firstAttribute="width" constant="25" id="v0F-cF-iZP"/>
@@ -44,16 +44,18 @@
             <constraints>
                 <constraint firstItem="Q6f-D5-ae9" firstAttribute="trailing" secondItem="Hvz-9l-DKE" secondAttribute="trailing" constant="13" id="4eA-Bx-dmE"/>
                 <constraint firstItem="FYL-xa-qMQ" firstAttribute="leading" secondItem="Q6f-D5-ae9" secondAttribute="leading" constant="16" id="5i0-GQ-qqi"/>
-                <constraint firstItem="Hvz-9l-DKE" firstAttribute="centerY" secondItem="Q6f-D5-ae9" secondAttribute="centerY" id="FIX-vt-zJx"/>
+                <constraint firstItem="FYL-xa-qMQ" firstAttribute="centerY" secondItem="TJU-UC-M7M" secondAttribute="centerY" id="FgJ-cm-0b1"/>
                 <constraint firstItem="Q6f-D5-ae9" firstAttribute="trailing" secondItem="TJU-UC-M7M" secondAttribute="trailing" id="cdX-Uu-2t0"/>
+                <constraint firstItem="Hvz-9l-DKE" firstAttribute="centerY" secondItem="TJU-UC-M7M" secondAttribute="centerY" id="eyJ-CI-cY9"/>
                 <constraint firstItem="TJU-UC-M7M" firstAttribute="top" secondItem="xWy-ln-JIH" secondAttribute="top" id="mK4-tJ-4ET"/>
+                <constraint firstItem="Hvz-9l-DKE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FYL-xa-qMQ" secondAttribute="trailing" constant="20" id="qAJ-Zk-fDc"/>
                 <constraint firstItem="TJU-UC-M7M" firstAttribute="leading" secondItem="Q6f-D5-ae9" secondAttribute="leading" id="qE6-WK-C2J"/>
-                <constraint firstItem="FYL-xa-qMQ" firstAttribute="centerY" secondItem="Q6f-D5-ae9" secondAttribute="centerY" id="qJH-93-FPy"/>
-                <constraint firstAttribute="bottom" secondItem="TJU-UC-M7M" secondAttribute="bottom" id="wF7-LO-Hxn"/>
+                <constraint firstAttribute="bottom" secondItem="TJU-UC-M7M" secondAttribute="bottom" constant="4" id="wF7-LO-Hxn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q6f-D5-ae9"/>
             <connections>
                 <outlet property="addBtn" destination="Hvz-9l-DKE" id="cwp-md-sBC"/>
+                <outlet property="container" destination="TJU-UC-M7M" id="Db8-cr-Goh"/>
                 <outlet property="nameLabel" destination="FYL-xa-qMQ" id="hhK-A4-QJ9"/>
             </connections>
             <point key="canvasLocation" x="124" y="-48"/>

@@ -97,6 +97,20 @@ class ShoppingListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate,
         return 44
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if sections.isEmpty || section == sections.count - 1 {
+            return 55
+        }
+        
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.9371530414, green: 0.9373135567, blue: 0.9371429086, alpha: 1)
+        return view
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         var item: Item
