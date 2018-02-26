@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Add Item To SectionVC-->
+        <scene sceneID="JT8-EK-DtV">
+            <objects>
+                <viewController storyboardIdentifier="AddItemToSection" id="9Ly-qE-huQ" customClass="AddItemToSectionVC" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BaS-M4-hqY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Kq-SE-gad">
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qkG-XA-DH1">
+                                <rect key="frame" x="8" y="8" width="359" height="44"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9PM-el-Yc1" customClass="InsetTextField" customModule="HMAIS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="44"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.1333139837" green="0.13334444170000001" blue="0.1333120763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7M9-h9-451">
+                                        <rect key="frame" x="326" y="7" width="27" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="27" id="3Sd-MH-TuD"/>
+                                            <constraint firstAttribute="height" constant="31" id="FY5-D1-ExK"/>
+                                        </constraints>
+                                        <state key="normal" image="down_arrow"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="7M9-h9-451" firstAttribute="leading" secondItem="9PM-el-Yc1" secondAttribute="trailing" constant="7" id="3LX-K0-UIK"/>
+                                    <constraint firstItem="9PM-el-Yc1" firstAttribute="leading" secondItem="qkG-XA-DH1" secondAttribute="leading" id="9cv-rV-TAP"/>
+                                    <constraint firstAttribute="trailing" secondItem="9PM-el-Yc1" secondAttribute="trailing" constant="40" id="9o0-v1-dqh"/>
+                                    <constraint firstAttribute="height" constant="44" id="Anr-PR-onG"/>
+                                    <constraint firstAttribute="bottom" secondItem="9PM-el-Yc1" secondAttribute="bottom" id="HOr-og-txh"/>
+                                    <constraint firstItem="7M9-h9-451" firstAttribute="centerY" secondItem="qkG-XA-DH1" secondAttribute="centerY" id="M6X-aV-1lP"/>
+                                    <constraint firstAttribute="trailing" secondItem="7M9-h9-451" secondAttribute="trailing" constant="6" id="YWO-ov-95z"/>
+                                    <constraint firstItem="9PM-el-Yc1" firstAttribute="top" secondItem="qkG-XA-DH1" secondAttribute="top" id="ixl-h8-ANg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.9371530414" green="0.93731355670000005" blue="0.93714290860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cFq-4K-l3U" firstAttribute="trailing" secondItem="3Kq-SE-gad" secondAttribute="trailing" id="7Gc-Ei-aCp"/>
+                            <constraint firstItem="cFq-4K-l3U" firstAttribute="bottom" secondItem="3Kq-SE-gad" secondAttribute="bottom" id="DLw-Pt-BZH"/>
+                            <constraint firstItem="qkG-XA-DH1" firstAttribute="leading" secondItem="cFq-4K-l3U" secondAttribute="leading" constant="8" id="DgL-h1-2yp"/>
+                            <constraint firstItem="cFq-4K-l3U" firstAttribute="trailing" secondItem="qkG-XA-DH1" secondAttribute="trailing" constant="8" id="cqe-hw-2d6"/>
+                            <constraint firstItem="3Kq-SE-gad" firstAttribute="top" secondItem="qkG-XA-DH1" secondAttribute="bottom" constant="8" id="dbs-WF-HfL"/>
+                            <constraint firstItem="qkG-XA-DH1" firstAttribute="top" secondItem="BaS-M4-hqY" secondAttribute="top" constant="8" id="hVi-hq-kpz"/>
+                            <constraint firstItem="3Kq-SE-gad" firstAttribute="leading" secondItem="cFq-4K-l3U" secondAttribute="leading" id="zzy-Yc-HyZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cFq-4K-l3U"/>
+                    </view>
+                    <connections>
+                        <outlet property="downArrow" destination="7M9-h9-451" id="iS2-cX-2uR"/>
+                        <outlet property="tableView" destination="3Kq-SE-gad" id="Jqj-zB-2XC"/>
+                        <outlet property="textField" destination="9PM-el-Yc1" id="ALG-ou-cQa"/>
+                        <outlet property="textFieldContainer" destination="qkG-XA-DH1" id="eXJ-S1-gsg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dAb-Y8-m6h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-245.59999999999999" y="168.6656671664168"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="down_arrow" width="27" height="31"/>
+    </resources>
+</document>

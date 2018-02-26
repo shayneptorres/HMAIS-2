@@ -73,6 +73,7 @@ class MiniForm: UIView, UITextFieldDelegate {
         self.formTextField.becomeFirstResponder()
     }
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

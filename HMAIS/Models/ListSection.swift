@@ -24,13 +24,24 @@ class ListSection: Object, RealmManagable {
     }
     
     func getItems() -> [Item] {
-        guard let list = ItemList.getOne(withId: "\(listID)") else { return [] }
-        return list.items.filter({ item in item.sectionID == self.id })
+        guard let list = getList() else { return [] }
+        // return all the items sorted by completed or not
+        return list.items.filter({ item in item.sectionID == self.id }).sorted(by: { i, _ in !i.completed })
     }
     
     func addItem(_ item: Item) {
-        guard var list = ItemList.getOne(withId: "\(listID)") else { return }
+        guard var list = getList() else { return }
         var newItem = item
         list.add(item: newItem, toSectionWithID: self.id)
+    }
+    
+    func totalDelete() {
+        let items = getItems()
+        items.forEach({ $0.delete() })
+        self.delete()
+    }
+    
+    func getList() -> ItemList? {
+        return ItemList.getOne(withId: "\(listID)")
     }
 }

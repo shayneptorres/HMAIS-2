@@ -10,6 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SwiftyTimer
+import AssistantKit
+import Toast_Swift
 
 class ListsVC: UIViewController, TableViewManager, KeyboardObserver {
     
@@ -25,6 +27,9 @@ class ListsVC: UIViewController, TableViewManager, KeyboardObserver {
     
     @IBOutlet weak var addBtn: UIButton! {
         didSet {
+            
+            addBtn.layer.cornerRadius = 4
+            
             addBtn.rx
                 .tap
                 .bind(onNext: { [weak self] in
@@ -86,6 +91,11 @@ class ListsVC: UIViewController, TableViewManager, KeyboardObserver {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)]
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.viewModel.inputs.viewDidLoad()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToListDetail" {
             guard let list = sender as? ItemList else { return }
@@ -110,17 +120,32 @@ class ListsVC: UIViewController, TableViewManager, KeyboardObserver {
         }
     }
     
+    func listsWereUpdated() {
+        self.viewModel.inputs.listWasAdded()
+    }
+    
     func showMiniForm(atHeight height: CGFloat) {
         miniForm.alpha = 1
-        let translationY = -height + miniForm.frame.height + 5
+        var translationY = -height + miniForm.frame.height + 5
+        if Device.isPhoneX {
+            translationY += 30
+        }
+        // transform the miniform
         let transform = CGAffineTransform(translationX: 0, y: translationY)
         miniForm.transform = transform
+        
+        // update the tab bar button
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.endEditingMiniForm))
     }
     
     func hideMiniForm() {
         miniForm.alpha = 0
+        // translate miniform to origin
         let transform = CGAffineTransform(translationX: 0, y: 0)
         miniForm.transform = transform
+        
+        // update the bar button item
+        self.navigationItem.rightBarButtonItem = nil
     }
     
     func assignListType(list: ItemList, newType: Int) {
@@ -129,15 +154,19 @@ class ListsVC: UIViewController, TableViewManager, KeyboardObserver {
         editableList.update(completion: { updateList in
             updateList.type = newType
         })
+        self.endEditingMiniForm()
         UIView.animate(withDuration: 0.7, animations: {
             self.viewModel.inputs.listWasAdded()
         }, completion: { _ in
-            Timer.after(1.second) {
+            Timer.after(0.4.seconds) {
                 self.performSegue(withIdentifier: "ToListDetail", sender: list)
             }
         })
     }
 
+    @objc func endEditingMiniForm() {
+        miniForm.endEditing(true)
+    }
 }
 
 extension ListsVC: MiniFormDelegate {
@@ -166,6 +195,7 @@ extension ListsVC: UITableViewDelegate, UITableViewDataSource {
         if lists.isEmpty {
             let emptyCell = tableView.dequeueReusableCell(withIdentifier: CellID.emptyCell.rawValue) as! EmptyTableCell
             emptyCell.configure(withMessage: EmptyCellMessage.list.message)
+            emptyCell.selectionStyle = .none
             cell = emptyCell
         } else {
             let listCell = tableView.dequeueReusableCell(withIdentifier: CellID.listCell.rawValue) as! ListCell
@@ -194,6 +224,7 @@ extension ListsVC: UITableViewDelegate, UITableViewDataSource {
             alert.addAction(cancelOption)
             present(alert, animated: true)
         } else {
+            self.endEditingMiniForm()
             performSegue(withIdentifier: "ToListDetail", sender: list)
         }
     }

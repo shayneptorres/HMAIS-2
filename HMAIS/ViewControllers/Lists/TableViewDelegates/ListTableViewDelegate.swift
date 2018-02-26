@@ -18,6 +18,7 @@ class ListTableViewDelegate: NSObject {
             tableView.dataSource = self as! UITableViewDataSource
         }
     }
+    var viewController: ListDetailVC?
     
     var sectionAddBtnCompletion: ((_ section: ListSection) -> ())?
     var reloadCompletion: (() -> ())?

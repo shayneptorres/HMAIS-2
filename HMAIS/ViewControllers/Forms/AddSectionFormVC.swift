@@ -28,6 +28,9 @@ class AddSectionFormVC: UIViewController {
     
     @IBOutlet weak var addBtn: UIButton! {
         didSet {
+            
+            addBtn.layer.cornerRadius = 4
+            
             addBtn.rx.tap.bind(onNext:{
                 guard
                     let text = self.textField.text,

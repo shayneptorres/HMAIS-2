@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -86,7 +85,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJh-w5-N7j">
-                                <rect key="frame" x="16" y="40" width="343" height="267"/>
+                                <rect key="frame" x="16" y="40" width="343" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="NPI-TQ-GBh"/>
+                                </constraints>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.1333139837" green="0.13334444170000001" blue="0.1333120763" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
@@ -94,12 +96,12 @@
                             <constraint firstItem="ZJh-w5-N7j" firstAttribute="leading" secondItem="X5B-Mg-Hgc" secondAttribute="leading" constant="16" id="B3K-83-vCi"/>
                             <constraint firstItem="ZJh-w5-N7j" firstAttribute="top" secondItem="X5B-Mg-Hgc" secondAttribute="top" constant="20" id="PIe-AA-aYN"/>
                             <constraint firstItem="X5B-Mg-Hgc" firstAttribute="trailing" secondItem="ZJh-w5-N7j" secondAttribute="trailing" constant="16" id="YnQ-ta-x2F"/>
-                            <constraint firstItem="ZJh-w5-N7j" firstAttribute="height" secondItem="Iz7-FZ-IhJ" secondAttribute="height" multiplier="2:5" id="ncD-rM-7Vn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X5B-Mg-Hgc"/>
                     </view>
                     <connections>
                         <outlet property="container" destination="ZJh-w5-N7j" id="NIe-DR-byW"/>
+                        <outlet property="containerHeight" destination="NPI-TQ-GBh" id="Zhm-vr-BvY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afB-aX-IbQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
