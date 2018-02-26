@@ -131,5 +131,101 @@
             </objects>
             <point key="canvasLocation" x="-423.19999999999999" y="875.71214392803608"/>
         </scene>
+        <!--Shopping Item FormVC-->
+        <scene sceneID="wPh-5d-mJB">
+            <objects>
+                <viewController storyboardIdentifier="ShoppingItemForm" id="CdI-XT-Mv4" customClass="ShoppingItemFormVC" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Leu-ew-gqd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yv3-Tf-b6K">
+                                <rect key="frame" x="24" y="36" width="335" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="wQw-LW-jT2"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i0Q-Na-OfC">
+                                <rect key="frame" x="24" y="80" width="335" height="2"/>
+                                <color key="backgroundColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="Exz-aN-aMA"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gES-4n-Oda">
+                                <rect key="frame" x="16" y="162" width="343" height="44"/>
+                                <color key="backgroundColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ZsZ-fZ-EaD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vRf-hK-gab">
+                                <rect key="frame" x="334" y="118" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="SJE-8e-mIB"/>
+                                    <constraint firstAttribute="width" constant="25" id="YPd-7B-jfd"/>
+                                </constraints>
+                                <state key="normal" image="add_circle"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYt-py-VFw">
+                                <rect key="frame" x="164.5" y="118" width="46" height="25"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIA-0c-umJ">
+                                <rect key="frame" x="16" y="118" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="2i4-Jp-XOy"/>
+                                    <constraint firstAttribute="height" constant="25" id="UBW-zU-jOj"/>
+                                </constraints>
+                                <state key="normal" image="minus_circle"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VIA-0c-umJ" firstAttribute="leading" secondItem="gES-4n-Oda" secondAttribute="leading" id="ANa-oL-kJA"/>
+                            <constraint firstItem="ZYt-py-VFw" firstAttribute="centerX" secondItem="gES-4n-Oda" secondAttribute="centerX" id="AP2-JJ-yAG"/>
+                            <constraint firstItem="q9E-Xv-716" firstAttribute="trailing" secondItem="yv3-Tf-b6K" secondAttribute="trailing" constant="16" id="CJW-WR-M2z"/>
+                            <constraint firstItem="i0Q-Na-OfC" firstAttribute="width" secondItem="yv3-Tf-b6K" secondAttribute="width" id="Cgh-rx-Wpv"/>
+                            <constraint firstItem="i0Q-Na-OfC" firstAttribute="top" secondItem="yv3-Tf-b6K" secondAttribute="bottom" id="GE9-y3-8Ka"/>
+                            <constraint firstItem="gES-4n-Oda" firstAttribute="top" secondItem="vRf-hK-gab" secondAttribute="bottom" constant="19" id="J7A-7D-uMb"/>
+                            <constraint firstItem="gES-4n-Oda" firstAttribute="leading" secondItem="q9E-Xv-716" secondAttribute="leading" constant="16" id="L9i-BG-CwA"/>
+                            <constraint firstItem="vRf-hK-gab" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZYt-py-VFw" secondAttribute="trailing" constant="20" id="R1s-1q-7CS"/>
+                            <constraint firstItem="gES-4n-Oda" firstAttribute="top" secondItem="ZYt-py-VFw" secondAttribute="bottom" constant="19" id="dCz-aP-20i"/>
+                            <constraint firstItem="yv3-Tf-b6K" firstAttribute="leading" secondItem="q9E-Xv-716" secondAttribute="leading" constant="24" id="j3F-8G-Sjo"/>
+                            <constraint firstItem="ZYt-py-VFw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VIA-0c-umJ" secondAttribute="trailing" constant="20" id="j7J-cm-IY6"/>
+                            <constraint firstItem="q9E-Xv-716" firstAttribute="trailing" secondItem="gES-4n-Oda" secondAttribute="trailing" constant="16" id="mB9-5X-Qy9"/>
+                            <constraint firstItem="yv3-Tf-b6K" firstAttribute="top" secondItem="q9E-Xv-716" secondAttribute="top" constant="16" id="psT-vO-koR"/>
+                            <constraint firstItem="i0Q-Na-OfC" firstAttribute="centerX" secondItem="yv3-Tf-b6K" secondAttribute="centerX" id="sRR-At-wMW"/>
+                            <constraint firstItem="gES-4n-Oda" firstAttribute="top" secondItem="i0Q-Na-OfC" secondAttribute="bottom" constant="80" id="uNP-BP-ysP"/>
+                            <constraint firstItem="vRf-hK-gab" firstAttribute="trailing" secondItem="gES-4n-Oda" secondAttribute="trailing" id="vcp-zW-nPM"/>
+                            <constraint firstItem="gES-4n-Oda" firstAttribute="top" secondItem="VIA-0c-umJ" secondAttribute="bottom" constant="19" id="xpk-nj-QTj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q9E-Xv-716"/>
+                    </view>
+                    <connections>
+                        <outlet property="countLabel" destination="ZYt-py-VFw" id="hNN-Ur-wEc"/>
+                        <outlet property="decrementBtn" destination="VIA-0c-umJ" id="c3n-Gh-NNY"/>
+                        <outlet property="incrementBtn" destination="vRf-hK-gab" id="qmu-Qj-ItY"/>
+                        <outlet property="saveBtn" destination="gES-4n-Oda" id="Aqw-2C-8AI"/>
+                        <outlet property="textField" destination="yv3-Tf-b6K" id="Wef-jd-Gya"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jR7-6J-erG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-423.19999999999999" y="1599.8500749625189"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="add_circle" width="35" height="35"/>
+        <image name="minus_circle" width="35" height="35"/>
+    </resources>
 </document>

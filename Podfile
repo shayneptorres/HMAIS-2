@@ -17,6 +17,8 @@ target 'HMAIS' do
   pod 'RxRealm'
   pod 'KeychainAccess'
   pod 'IHKeyboardAvoiding'
+  pod 'AssistantKit'
+  pod 'Toast-Swift', '~> 3.0.1'
 
   target 'HMAISTests' do
     inherit! :search_paths

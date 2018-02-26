@@ -63,6 +63,18 @@ class ItemList : Object, RealmManagable, ListItemTypable, Totalable, Summarizabl
         
     }
     
+    func totalDelete() {
+        self.items.forEach({
+            $0.delete()
+        })
+        
+        self.sections.forEach({
+            $0.delete()
+        })
+        
+        self.delete()
+    }
+    
     func add(item: Item, toSectionWithID id: Int) {
         var newItem = item
         newItem.sectionID = id

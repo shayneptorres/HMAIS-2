@@ -10,8 +10,28 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+enum ModalFormType {
+    case addSection
+    case addItemToSection
+    case editItem
+}
+
+extension ModalFormType {
+    var formHeight: CGFloat {
+        switch self {
+        case .addSection:
+            return 175
+        case .addItemToSection:
+            return 350
+        case .editItem:
+            return 200
+        }
+    }
+}
+
 class ModalFormNav: UIViewController {
     
+    @IBOutlet weak var containerHeight: NSLayoutConstraint!
     @IBOutlet weak var container: UIView! {
         didSet {
             container.layer.cornerRadius = 8
@@ -20,6 +40,7 @@ class ModalFormNav: UIViewController {
     }
     
     let trash = DisposeBag()
+    var formType: ModalFormType = .addSection
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +56,10 @@ class ModalFormNav: UIViewController {
         }).disposed(by: trash)
         
         self.view.addGestureRecognizer(tap)
+        
+        setModalFormTypeHeight()
     }
+    
     
     var tapToDismissEnabled = true
     
@@ -47,6 +71,10 @@ class ModalFormNav: UIViewController {
             // dismiss view
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func setModalFormTypeHeight() {
+        self.containerHeight.constant = self.formType.formHeight
     }
     
     func present(_ viewController: UIViewController, from presenter: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
