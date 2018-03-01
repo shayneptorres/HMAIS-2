@@ -41,6 +41,10 @@
 		B87C1B3C20203ED300C9326E /* ListsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C1B3B20203ED300C9326E /* ListsVM.swift */; };
 		B87C1B4B2021690900C9326E /* ItemListObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C1B4A2021690900C9326E /* ItemListObserver.swift */; };
 		B887A51E2026E6F200A2DBC5 /* ItemObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B887A51D2026E6F200A2DBC5 /* ItemObserver.swift */; };
+		B8887D2A204544E5008D8764 /* BudgetItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8887D29204544E5008D8764 /* BudgetItemForm.swift */; };
+		B8887D2C20454736008D8764 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8887D2B20454736008D8764 /* CurrencyTextField.swift */; };
+		B8887D2E20464017008D8764 /* BudgetListSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8887D2D20464017008D8764 /* BudgetListSectionHeader.swift */; };
+		B8887D302046407E008D8764 /* BudgetListSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8887D2F2046407E008D8764 /* BudgetListSectionHeader.xib */; };
 		B8D08D5E2038D6AB00E71724 /* AnimatedNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D08D5D2038D6AB00E71724 /* AnimatedNavController.swift */; };
 		B8D08D602038D6F300E71724 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D08D5F2038D6F300E71724 /* TransitionAnimator.swift */; };
 		B8D08D622038D75900E71724 /* FadeTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D08D612038D75900E71724 /* FadeTransitionAnimator.swift */; };
@@ -50,6 +54,12 @@
 		B8E8A2812042AC730005CCE8 /* AddItemToSectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E8A2802042AC730005CCE8 /* AddItemToSectionVC.swift */; };
 		B8E8A2832042ACBE0005CCE8 /* Items.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8E8A2822042ACBE0005CCE8 /* Items.storyboard */; };
 		B8E8A2852043569C0005CCE8 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E8A2842043569C0005CCE8 /* InsetTextField.swift */; };
+		B8E8A2882043AF640005CCE8 /* BudgetListSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E8A2862043AF640005CCE8 /* BudgetListSummaryCell.swift */; };
+		B8E8A2892043AF640005CCE8 /* BudgetListSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8E8A2872043AF640005CCE8 /* BudgetListSummaryCell.xib */; };
+		B8E8A28C20450BDB0005CCE8 /* BudgetItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E8A28A20450BDB0005CCE8 /* BudgetItemCell.swift */; };
+		B8E8A28D20450BDB0005CCE8 /* BudgetItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8E8A28B20450BDB0005CCE8 /* BudgetItemCell.xib */; };
+		B8E8A28F204511560005CCE8 /* AlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E8A28E204511560005CCE8 /* AlertCreator.swift */; };
+		B8ED46362047948D00EE1A36 /* BudgetListBudgetFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED46352047948D00EE1A36 /* BudgetListBudgetFormVC.swift */; };
 		B8F375A5201E79A5000654AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F375A4201E79A5000654AB /* AppDelegate.swift */; };
 		B8F375AA201E79A5000654AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8F375A8201E79A5000654AB /* Main.storyboard */; };
 		B8F375AC201E79A5000654AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F375AB201E79A5000654AB /* Assets.xcassets */; };
@@ -118,6 +128,10 @@
 		B87C1B3B20203ED300C9326E /* ListsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsVM.swift; sourceTree = "<group>"; };
 		B87C1B4A2021690900C9326E /* ItemListObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListObserver.swift; sourceTree = "<group>"; };
 		B887A51D2026E6F200A2DBC5 /* ItemObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemObserver.swift; sourceTree = "<group>"; };
+		B8887D29204544E5008D8764 /* BudgetItemForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetItemForm.swift; sourceTree = "<group>"; };
+		B8887D2B20454736008D8764 /* CurrencyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
+		B8887D2D20464017008D8764 /* BudgetListSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListSectionHeader.swift; sourceTree = "<group>"; };
+		B8887D2F2046407E008D8764 /* BudgetListSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BudgetListSectionHeader.xib; sourceTree = "<group>"; };
 		B8D08D5D2038D6AB00E71724 /* AnimatedNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedNavController.swift; sourceTree = "<group>"; };
 		B8D08D5F2038D6F300E71724 /* TransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
 		B8D08D612038D75900E71724 /* FadeTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -127,6 +141,12 @@
 		B8E8A2802042AC730005CCE8 /* AddItemToSectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToSectionVC.swift; sourceTree = "<group>"; };
 		B8E8A2822042ACBE0005CCE8 /* Items.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Items.storyboard; sourceTree = "<group>"; };
 		B8E8A2842043569C0005CCE8 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
+		B8E8A2862043AF640005CCE8 /* BudgetListSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListSummaryCell.swift; sourceTree = "<group>"; };
+		B8E8A2872043AF640005CCE8 /* BudgetListSummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BudgetListSummaryCell.xib; sourceTree = "<group>"; };
+		B8E8A28A20450BDB0005CCE8 /* BudgetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetItemCell.swift; sourceTree = "<group>"; };
+		B8E8A28B20450BDB0005CCE8 /* BudgetItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BudgetItemCell.xib; sourceTree = "<group>"; };
+		B8E8A28E204511560005CCE8 /* AlertCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCreator.swift; sourceTree = "<group>"; };
+		B8ED46352047948D00EE1A36 /* BudgetListBudgetFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListBudgetFormVC.swift; sourceTree = "<group>"; };
 		B8F375A1201E79A5000654AB /* HMAIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HMAIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F375A4201E79A5000654AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8F375A9201E79A5000654AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -219,6 +239,8 @@
 				B859622120218FF4007A8567 /* SpendingItemFormVC.swift */,
 				B8D08D652039088800E71724 /* AddSectionFormVC.swift */,
 				B8DC5BAF203E738B00149689 /* ShoppingItemForm.swift */,
+				B8887D29204544E5008D8764 /* BudgetItemForm.swift */,
+				B8ED46352047948D00EE1A36 /* BudgetListBudgetFormVC.swift */,
 			);
 			path = Forms;
 			sourceTree = "<group>";
@@ -262,6 +284,7 @@
 				B8FBFD2C2031453100F90B1A /* MiniForm.swift */,
 				B8FBFD2E2031459700F90B1A /* MiniForm.xib */,
 				B8E8A2842043569C0005CCE8 /* InsetTextField.swift */,
+				B8887D2B20454736008D8764 /* CurrencyTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +305,7 @@
 			children = (
 				B887A5182026D51D00A2DBC5 /* Observers */,
 				B8F375AB201E79A5000654AB /* Assets.xcassets */,
+				B8E8A28E204511560005CCE8 /* AlertCreator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -337,6 +361,12 @@
 				B81013CE203833FC00F24A78 /* ShoppingItemCell.xib */,
 				B81013D32038C90000F24A78 /* ListSectionHeader.swift */,
 				B81013D52038C92B00F24A78 /* ListSectionHeader.xib */,
+				B8E8A2862043AF640005CCE8 /* BudgetListSummaryCell.swift */,
+				B8E8A2872043AF640005CCE8 /* BudgetListSummaryCell.xib */,
+				B8E8A28A20450BDB0005CCE8 /* BudgetItemCell.swift */,
+				B8E8A28B20450BDB0005CCE8 /* BudgetItemCell.xib */,
+				B8887D2D20464017008D8764 /* BudgetListSectionHeader.swift */,
+				B8887D2F2046407E008D8764 /* BudgetListSectionHeader.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -533,18 +563,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84093622025408B0018C22E /* FormEntryCell.xib in Resources */,
+				B8887D302046407E008D8764 /* BudgetListSectionHeader.xib in Resources */,
 				B81013C120381FAE00F24A78 /* ListCell.xib in Resources */,
 				B81013BD20381E7A00F24A78 /* EmptyTableCell.xib in Resources */,
 				B860E4462024360A0030FC04 /* SpendingCostCell.xib in Resources */,
 				B8F375AF201E79A5000654AB /* LaunchScreen.storyboard in Resources */,
 				B8F375AC201E79A5000654AB /* Assets.xcassets in Resources */,
 				B87C1B3820203E3000C9326E /* Lists.storyboard in Resources */,
+				B8E8A2892043AF640005CCE8 /* BudgetListSummaryCell.xib in Resources */,
 				B8FBFD2F2031459700F90B1A /* MiniForm.xib in Resources */,
 				B81013D62038C92B00F24A78 /* ListSectionHeader.xib in Resources */,
 				B81013D0203833FC00F24A78 /* ShoppingItemCell.xib in Resources */,
 				B8F375AA201E79A5000654AB /* Main.storyboard in Resources */,
 				B8E8A2832042ACBE0005CCE8 /* Items.storyboard in Resources */,
 				B859621E20218ED1007A8567 /* Forms.storyboard in Resources */,
+				B8E8A28D20450BDB0005CCE8 /* BudgetItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,8 +773,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B81013C62038326C00F24A78 /* ListTableViewDelegate.swift in Sources */,
+				B8887D2A204544E5008D8764 /* BudgetItemForm.swift in Sources */,
 				B8D08D602038D6F300E71724 /* TransitionAnimator.swift in Sources */,
 				B87C1B23201EF0F400C9326E /* RealmManageable.swift in Sources */,
+				B8887D2E20464017008D8764 /* BudgetListSectionHeader.swift in Sources */,
 				B87C1B4B2021690900C9326E /* ItemListObserver.swift in Sources */,
 				B81013CF203833FC00F24A78 /* ShoppingItemCell.swift in Sources */,
 				B8E8A2852043569C0005CCE8 /* InsetTextField.swift in Sources */,
@@ -750,7 +785,10 @@
 				B8DC5BB0203E738B00149689 /* ShoppingItemForm.swift in Sources */,
 				B8D08D662039088800E71724 /* AddSectionFormVC.swift in Sources */,
 				B81013BC20381E7A00F24A78 /* EmptyTableCell.swift in Sources */,
+				B8E8A2882043AF640005CCE8 /* BudgetListSummaryCell.swift in Sources */,
+				B8ED46362047948D00EE1A36 /* BudgetListBudgetFormVC.swift in Sources */,
 				B8D08D642038F8FF00E71724 /* ModalFormNav.swift in Sources */,
+				B8E8A28F204511560005CCE8 /* AlertCreator.swift in Sources */,
 				B859621C20217D9A007A8567 /* ListDetailVM.swift in Sources */,
 				B87C1B27201F82CA00C9326E /* Enums.swift in Sources */,
 				B860E448202439100030FC04 /* Extensions.swift in Sources */,
@@ -762,6 +800,7 @@
 				B859622220218FF4007A8567 /* SpendingItemFormVC.swift in Sources */,
 				B81013C32038321500F24A78 /* BudgetListTableViewDelegate.swift in Sources */,
 				B887A51E2026E6F200A2DBC5 /* ItemObserver.swift in Sources */,
+				B8E8A28C20450BDB0005CCE8 /* BudgetItemCell.swift in Sources */,
 				B81013D42038C90000F24A78 /* ListSectionHeader.swift in Sources */,
 				B8FBFD2D2031453100F90B1A /* MiniForm.swift in Sources */,
 				B81013C020381FAE00F24A78 /* ListCell.swift in Sources */,
@@ -771,6 +810,7 @@
 				B8E8A2812042AC730005CCE8 /* AddItemToSectionVC.swift in Sources */,
 				B8D08D622038D75900E71724 /* FadeTransitionAnimator.swift in Sources */,
 				B87C1B29201F852C00C9326E /* Protocol.swift in Sources */,
+				B8887D2C20454736008D8764 /* CurrencyTextField.swift in Sources */,
 				B81013D22038A8F800F24A78 /* ListSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

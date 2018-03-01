@@ -44,4 +44,9 @@ class ListSection: Object, RealmManagable {
     func getList() -> ItemList? {
         return ItemList.getOne(withId: "\(listID)")
     }
+    
+    func getSectionTotal() -> Double {
+        return getItems().reduce(0, { result, item in return result + item.price })
+    }
+    
 }

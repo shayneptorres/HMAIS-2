@@ -11,9 +11,11 @@ import RxCocoa
 import RxSwift
 
 enum ModalFormType {
-    case addSection
-    case addItemToSection
-    case editItem
+    case addSection(list: ItemList)
+    case addItemToSection(list: ItemList, section: ListSection)
+    case editItem(item: Item)
+    case addBudgetItem(list: ItemList, section: ListSection?, item: Item?)
+    case setBudet(list: ItemList)
 }
 
 extension ModalFormType {
@@ -25,6 +27,43 @@ extension ModalFormType {
             return 350
         case .editItem:
             return 200
+        case .addBudgetItem(_, let section, _):
+            if section != nil {
+                return 315
+            }
+            return 250
+        case .setBudet:
+            return 175
+        }
+    }
+    
+    var storyboard: UIStoryboard {
+        switch self {
+        case .addSection:
+            return UIStoryboard(name: "Forms", bundle: nil)
+        case .addItemToSection:
+            return UIStoryboard(name: "Items", bundle: nil)
+        case .editItem:
+            return UIStoryboard(name: "Forms", bundle: nil)
+        case .addBudgetItem:
+            return UIStoryboard(name: "Forms", bundle: nil)
+        case .setBudet:
+            return UIStoryboard(name: "Forms", bundle: nil)
+        }
+    }
+    
+    var sourceViewController: UIViewController {
+        switch self {
+        case .addSection:
+            return self.storyboard.instantiateViewController(withIdentifier: "AddSectionVC")
+        case .addItemToSection:
+            return self.storyboard.instantiateViewController(withIdentifier: "AddItemToSection")
+        case .editItem:
+            return self.storyboard.instantiateViewController(withIdentifier: "ShoppingItemForm")
+        case .addBudgetItem:
+            return self.storyboard.instantiateViewController(withIdentifier: "BudgetItemForm")
+        case .setBudet:
+            return self.storyboard.instantiateViewController(withIdentifier: "SetBudget")
         }
     }
 }
@@ -40,7 +79,7 @@ class ModalFormNav: UIViewController {
     }
     
     let trash = DisposeBag()
-    var formType: ModalFormType = .addSection
+    var formType: ModalFormType = .addSection(list: ItemList())
     
     override func viewDidLoad() {
         super.viewDidLoad()

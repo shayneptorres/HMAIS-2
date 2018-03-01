@@ -61,6 +61,10 @@ enum CellID: String {
     // Items
     case shoppingItemCell = "shoppingItemCell"
     case shoppingSectionHeader = "shoppingSectionHeader"
+    case budgetListSummaryCell = "budgetListSummaryCell"
+    case budgetItemCell = "budgetItemCell"
+    // Sections
+    case budgetSectionHeader = "budgetListSectionHeader"
 }
 
 enum EmptyCellMessage {

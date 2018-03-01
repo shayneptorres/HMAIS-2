@@ -12,7 +12,7 @@ import RxCocoa
 import IHKeyboardAvoiding
 import AssistantKit
 
-class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
+class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalPresentable {
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -29,8 +29,16 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
             addBtn.rx
                 .tap
                 .bind(onNext: { [weak self] in
-                    guard let s = self else { return }
-                    s.miniForm.beginEditing()
+                    guard let s = self, let list = s.list else { return }
+                    if list.listItemType == .shopping {
+                        s.miniForm.beginEditing()
+                    } else {
+                        self?.presentModal(modalType: ModalFormType.addBudgetItem(list: list, section: nil, item: nil)) { vc in
+                            guard let budgetItemForm = vc as? BudgetItemForm else { return }
+                            budgetItemForm.delegate = self
+                        }
+                    }
+                    
                 })
                 .disposed(by: trash)
         }
@@ -56,30 +64,28 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        listTableDelegate = ShoppingListTableViewDelegate()
+        // set up the table view delegate based on the list type
+        listTableDelegate = (list?.type == 2) ? ShoppingListTableViewDelegate() : BudgetListTableViewDelegate()
+        
+        configureUI(withListType: list?.listItemType ?? .shopping)
         
         listTableDelegate?.sectionAddBtnCompletion = { section in
-            let mainSB = UIStoryboard(name: "Main", bundle: nil)
-            let itemsSB = UIStoryboard(name: "Items", bundle: nil)
             guard
-                let list = self.list,
-                let sectionIndex = list.sections.map({ $0.id }).index(where: { id in id == section.id }),
-                let modal = mainSB.instantiateViewController(withIdentifier: "ModalForm") as? ModalFormNav,
-                let addItem = itemsSB.instantiateViewController(withIdentifier: "AddItemToSection") as? AddItemToSectionVC,
-                let nav = self.navigationController,
-                let tab = nav.parent as? UITabBarController
+                let list = self.list
             else { return }
-            
-            addItem.list = list
-            addItem.listSection = section
-            addItem.delegate = self
-            
-            
-            modal.modalTransitionStyle = .crossDissolve
-            modal.formType = .addItemToSection
-            
-            
-            modal.present(addItem, from: tab, animated: true)
+
+            if list.listItemType == .shopping {
+                self.presentModal(modalType: ModalFormType.addItemToSection(list: list, section: section)) { viewController in
+                    guard let addItemToSection = viewController as? AddItemToSectionVC else { return }
+                    addItemToSection.delegate = self
+                }
+            } else {
+                self.presentModal(modalType: ModalFormType.addBudgetItem(list: list, section: section, item: nil)) { viewController in
+                    guard let budgetItemForm = viewController as? BudgetItemForm else { return }
+                    budgetItemForm.delegate = self
+                }
+            }
+
         }
         
         guard
@@ -95,42 +101,99 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
         delegate.registerTableViewCells(forTableView: tableView)
         
         viewModel.outputs.reloadTable.subscribe(onNext: { items in
-            delegate.configure(withTable: self.tableView,
-                               data: items,
-                               animated: false,
-                               reloadComp: {
-                                    self.animateReloadTable()
-                                }, infoBtnComp: { i in
-                                    self.showAlert(forItem: i)
-                                })
+            
+            list.sections.isEmpty ? (delegate.data = list.items.toArray()) : (delegate.sections = list.sections.toArray())
+            
+            if let budgetDelegate = delegate as? BudgetListTableViewDelegate {
+                budgetDelegate.rowSelectionCompletion = { i in
+                    
+                }
+                
+                budgetDelegate.list = list
+                
+                self.animateReloadTable()
+            } else if let shoppingDelegate = delegate as? ShoppingListTableViewDelegate {
+                shoppingDelegate.infoButtonCompletion = { i in
+                    // when the info button is tapped, display the info settings alert
+                    self.showAlert(forItem: i)
+                }
+                
+                shoppingDelegate.reloadCompletion = {
+                    self.animateReloadTable()
+                }
+                
+                shoppingDelegate.reloadCompletion?()
+            }
+            
+            
             // hide the add btn if there are sections
             self.addBtn.isHidden = !list.sections.isEmpty
         }).disposed(by: trash)
         
         viewModel.outputs.reloadTableWithSections.subscribe(onNext: { sections in
-            delegate.configure(withTable: self.tableView,
-                               sections: sections,
-                               animated: true,
-                               reloadComp: {
-                                self.animateReloadTable()
-            }, infoBtnComp: { i in
-                self.showAlert(forItem: i)
-            })
+            list.sections.isEmpty ? (delegate.data = list.items.toArray()) : (delegate.sections = sections)
+            
+            if let budgetDelegate = delegate as? BudgetListTableViewDelegate {
+                budgetDelegate.rowSelectionCompletion = { i in
+                    
+                }
+                
+                budgetDelegate.list = list
+                
+                budgetDelegate.sectionAddBtnCompletion = { section in
+                    self.presentModal(modalType: .addBudgetItem(list: list, section: section, item: nil)) { vc in
+                        guard let budgetItemForm = vc as? BudgetItemForm else { return }
+                        budgetItemForm.delegate = self
+                    }
+                }
+                
+                self.reloadTable(animated: true)
+                
+            } else if let shoppingDelegate = delegate as? ShoppingListTableViewDelegate {
+                shoppingDelegate.infoButtonCompletion = { i in
+                    // when the info button is tapped, display the info settings alert
+                    self.showAlert(forItem: i)
+                }
+                
+                shoppingDelegate.reloadCompletion = {
+                    self.animateReloadTable()
+                }
+                
+                shoppingDelegate.reloadCompletion?()
+            }
+            
+            
             // hide the add btn if there are sections
             self.addBtn.isHidden = !list.sections.isEmpty
         }).disposed(by: trash)
         
         viewModel.outputs.reloadSection.subscribe(onNext: { (section, data) in
-            delegate.configure(withTable: self.tableView,
-                               sections: data,
-                               animated: true,
-                               reloadComp: {
-                                self.animateReloadSection(section: section)
-            }, infoBtnComp: { i in
-                self.showAlert(forItem: i)
-            })
+            
+            delegate.sections = data
+            
+            if let budgetDelegate = delegate as? BudgetListTableViewDelegate {
+                budgetDelegate.rowSelectionCompletion = { i in
+                    
+                }
+                
+                budgetDelegate.list = list
+            } else if let shoppingDelegate = delegate as? ShoppingListTableViewDelegate {
+                shoppingDelegate.infoButtonCompletion = { i in
+                    // when the info button is tapped, display the info settings alert
+                    self.showAlert(forItem: i)
+                }
+                
+                shoppingDelegate.reloadCompletion = {
+                    self.animateReloadSection(section: section)
+                }
+                
+                shoppingDelegate.reloadCompletion?()
+            }
+            
+            
             // hide the add btn if there are sections
             self.addBtn.isHidden = !list.sections.isEmpty
+            
         }).disposed(by: trash)
         
         viewModel.inputs.viewDidLoad(list: list)
@@ -142,9 +205,29 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
         observeKeyboard()
     }
     
+    func configureUI(withListType type: ListItemType) {
+        switch type {
+        case .shopping:
+            self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.4830000103, green: 0.8349999785, blue: 0, alpha: 1)
+            self.addBtn.backgroundColor = #colorLiteral(red: 0.4830000103, green: 0.8349999785, blue: 0, alpha: 1)
+        case .budget:
+            self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9679999948, green: 0.6549999714, blue: 0, alpha: 1)
+            self.addBtn.backgroundColor = #colorLiteral(red: 0.9679999948, green: 0.6549999714, blue: 0, alpha: 1)
+        default:
+            break
+        }
+        
+    }
+    
     func animateReloadTable() {
         guard let list = list else { return }
-        UIView.transition(with: tableView, duration: 0.1, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() }, completion: nil)
+        UIView.transition(with: tableView, duration: 0.2, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() }, completion: nil)
+    }
+    
+    func reloadTable(animated: Bool) {
+        guard let list = list else { return }
+        let duration = animated ? 0.2 : 0.0
+        UIView.transition(with: tableView, duration: duration, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() }, completion: nil)
     }
     
     func animateReloadSection(section: Int) {
@@ -154,90 +237,68 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver {
     }
 
     func displayEditItemModal(forItem item: Item) {
-        let formSB = UIStoryboard(name: "Forms", bundle: nil)
-        let mainSB = UIStoryboard(name: "Main", bundle: nil)
-        guard
-            let modal = mainSB.instantiateViewController(withIdentifier: "ModalForm") as? ModalFormNav,
-            let shoppingItemForm = formSB.instantiateViewController(withIdentifier: "ShoppingItemForm") as? ShoppingItemFormVC,
-            let nav = self.navigationController,
-            let tab = nav.parent as? UITabBarController
-            else { return }
-        modal.modalTransitionStyle = .crossDissolve
-        
-        shoppingItemForm.editingItem = item
-        shoppingItemForm.delegate = self
-        modal.formType = .editItem
-        modal.present(shoppingItemForm, from: tab, animated: true)
+        presentModal(modalType: .editItem(item: item)) { viewController in
+            guard let shoppingItemForm = viewController as? ShoppingItemFormVC else { return }
+            shoppingItemForm.delegate = self
+        }
     }
     
     func showAlert(forItem item: Item) {
-        
-        let alert = UIAlertController(title: "\(item.name)", message: nil, preferredStyle: .actionSheet)
-        let editAction = UIAlertAction(title: "Edit", style: .default) { _ in
-            self.displayEditItemModal(forItem: item)
-        }
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
-            item.delete()
-            self.viewModel.reloadList(withListID: self.list?.id ?? 0)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
-        alert.addAction(editAction)
-        alert.addAction(deleteAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
+        let actionSheet = ActionSheetCreator(viewController: self)
+            actionSheet.createActionSheet(withTitle: "\(item.name)", withActions: [
+                UIAlertAction(title: "Edit", style: .default) { _ in self.displayEditItemModal(forItem: item) },
+                UIAlertAction(title: "Delete", style: .destructive) { _ in
+                    item.delete()
+                    self.viewModel.reloadList(withListID: self.list?.id ?? 0)
+                },
+                UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+            ]
+        )
     }
     
     @objc func showListSettingsAlert() {
         guard let list = list else { return }
         
-        let formSB = UIStoryboard(name: "Forms", bundle: nil)
-        let mainSB = UIStoryboard(name: "Main", bundle: nil)
-        guard
-            let modal = mainSB.instantiateViewController(withIdentifier: "ModalForm") as? ModalFormNav,
-            let addSection = formSB.instantiateViewController(withIdentifier: "AddSectionVC") as? AddSectionFormVC,
-            let shoppingItemForm = formSB.instantiateViewController(withIdentifier: "ShoppingItemForm") as? ShoppingItemFormVC,
-            let nav = self.navigationController,
-            let tab = nav.parent as? UITabBarController
-        else { return }
-        modal.modalTransitionStyle = .crossDissolve
+        let actionSheet = ActionSheetCreator(viewController: self)
         
-        
-        let alert = UIAlertController(title: "\(list.name)", message: nil, preferredStyle: .actionSheet)
-
-        let addSectionAction = UIAlertAction(title: "Add section", style: .default) { _ in
-            addSection.list = list
-            addSection.delegate = self
-            modal.present(addSection, from: tab, animated: true)
-        }
-        let editAction = UIAlertAction(title: "Edit", style: .default) { _ in
-            self.beginEditingTableView()
-        }
-        
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
-            // show an alert to make sure the user wants to delete this list
-            let alert = UIAlertController(title: "Delete list '\(self.list?.name ?? "")'", message: "Are you sure you want to delete this list?", preferredStyle: .actionSheet)
-            let deleteAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-                self.navigationController?.popViewController(animated: true)
-                list.totalDelete()
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
-            
-            alert.addAction(deleteAction)
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        var actions: [UIAlertAction] = [
+            UIAlertAction(title: "Add section", style: .default) { _ in
+                // present a modal with the add section form
+                self.presentModal(modalType: ModalFormType.addSection(list: list)) { viewController in
+                    guard let addSectionVC = viewController as? AddSectionFormVC else { return }
+                    addSectionVC.delegate = self
+                }
+            },
+            UIAlertAction(title: "Delete", style: .destructive) { _ in
+                // show an alert to make sure the user wants to delete this list
+                actionSheet.createActionSheet(withTitle: "Delete list '\(list.name)'", message: "Are you sure you want to delete this list?", withActions: [
+                    UIAlertAction(title: "Yes", style: .destructive) { _ in
+                        self.navigationController?.popViewController(animated: true)
+                        list.totalDelete()
+                    },
+                    UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+                ])
+            },
+            UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        ]
         
         if !list.items.isEmpty || !list.sections.isEmpty {
-
-            alert.addAction(editAction)
+            // if there are any items or sections, show the edit action
+            actions.insert(UIAlertAction(title: "Edit", style: .default) { _ in
+                self.beginEditingTableView()
+            }, at: 0)
         }
         
-        alert.addAction(addSectionAction)
-        alert.addAction(deleteAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
+        if let budgetDelegate = self.listTableDelegate as? BudgetListTableViewDelegate {
+            actions.insert(UIAlertAction(title: "Set Budget", style: .default) { _ in
+                self.presentModal(modalType: .setBudet(list: list)) { vc in
+                    guard let setBudgetVC = vc as? BudgetListBudgetFormVC else { return }
+                    setBudgetVC.delegate = self
+                }
+            }, at: 0)
+        }
+        
+        actionSheet.createActionSheet(withTitle: "\(list.name)", withActions: actions)
     }
     
     func beginEditingTableView() {
@@ -365,9 +426,15 @@ extension ListDetailVC: ShoppingItemFormDelegate {
     }
 }
 
-extension ListDetailVC: AddItemToSectionDelegate {
+extension ListDetailVC: AddItemToSectionDelegate, BudgetItemFormDelegate {
     func itemWasAdded() {
         guard let list = list else { return }
         self.viewModel.inputs.reloadList(withListID: list.id)
+    }
+}
+
+extension ListDetailVC: BudgetFormDelegate {
+    func budgetWasSet() {
+        reloadTable(animated: true)
     }
 }

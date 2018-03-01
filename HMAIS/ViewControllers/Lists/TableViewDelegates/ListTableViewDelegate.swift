@@ -12,12 +12,14 @@ import UIKit
 class ListTableViewDelegate: NSObject {
     
     var data: [Item] = []
+    var sections: [ListSection] = []
     var tableView: UITableView! {
         didSet {
             tableView.delegate = self as! UITableViewDelegate
             tableView.dataSource = self as! UITableViewDataSource
         }
     }
+    
     var viewController: ListDetailVC?
     
     var sectionAddBtnCompletion: ((_ section: ListSection) -> ())?
@@ -27,6 +29,7 @@ class ListTableViewDelegate: NSObject {
     }
     
     func registerTableViewCells(forTableView tableView: UITableView) {
+        self.tableView = tableView
         let nib = UINib(nibName: "EmptyTableCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: CellID.emptyCell.rawValue)
     }

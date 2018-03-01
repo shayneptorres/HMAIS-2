@@ -10,7 +10,7 @@ import Foundation
 import Realm
 import RealmSwift
 
-class ItemList : Object, RealmManagable, ListItemTypable, Totalable, Summarizable {
+class ItemList : Object, RealmManagable, ListItemTypable, Totalable, Summarizable, Budgetable {
     typealias RealmObject = ItemList
     
     @objc dynamic var id = Int()
@@ -19,7 +19,8 @@ class ItemList : Object, RealmManagable, ListItemTypable, Totalable, Summarizabl
     @objc dynamic var updatedAt = Date()
     @objc dynamic var createdAt = Date()
     @objc dynamic var type = 1
-    @objc dynamic var groupID = 0
+    @objc dynamic var budget: Double = 0
+    
     var items = List<Item>()
     var sections = List<ListSection>()
     

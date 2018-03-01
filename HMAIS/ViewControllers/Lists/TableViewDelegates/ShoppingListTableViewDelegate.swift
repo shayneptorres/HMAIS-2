@@ -12,7 +12,6 @@ import UIKit
 class ShoppingListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
     var infoButtonCompletion: ((_ item: Item) -> ())?
-    var sections: [ListSection] = []
     
     override func configure(withTable table: UITableView, data: [Item] = [], sections: [ListSection] = [], animated: Bool, reloadComp: (() -> ())? = nil, infoBtnComp: ((_ item: Item) -> ())? = nil) {
         self.tableView = table
@@ -119,8 +118,6 @@ class ShoppingListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate,
                 self.sectionAddBtnCompletion?(self.sections[section])
             }
         }
-        
-        
         
         return header
     }

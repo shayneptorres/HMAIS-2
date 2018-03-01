@@ -60,6 +60,7 @@ class ListsVC: UIViewController, TableViewManager, KeyboardObserver {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.4830000103, green: 0.8349999785, blue: 0, alpha: 1)
         observeKeyboard()
     }
     

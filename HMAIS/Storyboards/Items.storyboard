@@ -35,7 +35,7 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.1333139837" green="0.13334444170000001" blue="0.1333120763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7M9-h9-451">

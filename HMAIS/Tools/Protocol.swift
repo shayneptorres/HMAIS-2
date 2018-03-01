@@ -27,6 +27,23 @@ extension ListItemTypable where Self: ItemList {
     }
 }
 
+protocol Budgetable {
+}
+
+extension Budgetable where Self: ItemList {
+    var remainingAmount: Double {
+        return self.items.reduce(self.budget, { result, item in
+            result - item.price
+        })
+    }
+    
+    var spendAmount: Double {
+        return self.items.reduce(0, { result, item in
+            result + item.price
+        })
+    }
+}
+
 protocol Totalable {
     var total: Double { get }
 }
@@ -138,4 +155,51 @@ protocol MiniFormDelegate {
 
 
 
+protocol ModalPresentable {}
+
+extension ModalPresentable where Self: UIViewController {
+    
+    func presentModal(modalType: ModalFormType, completion: (_ viewController: UIViewController) -> ()) {
+        
+        let mainSB = UIStoryboard(name: "Main", bundle: nil)
+        
+        guard
+            let modal = mainSB.instantiateViewController(withIdentifier: "ModalForm") as? ModalFormNav,
+            let nav = self.navigationController,
+            let tab = nav.parent as? UITabBarController
+        else { return }
+        
+        var viewController: UIViewController
+        
+        switch modalType {
+        case .addSection(let list):
+            let addSection = modalType.sourceViewController as! AddSectionFormVC
+            addSection.list = list
+            viewController = addSection
+        case .addItemToSection(let list, let section):
+            let addItem = modalType.sourceViewController as! AddItemToSectionVC
+            addItem.list = list
+            addItem.listSection = section
+            viewController = addItem
+        case .editItem(let item):
+            let shoppingItemForm = modalType.sourceViewController as! ShoppingItemFormVC
+            shoppingItemForm.editingItem = item
+            viewController = shoppingItemForm
+        case .addBudgetItem(let list, let section, _):
+            let budgetItemForm = modalType.sourceViewController as! BudgetItemForm
+            budgetItemForm.list = list
+            budgetItemForm.selectedSection = section
+            viewController = budgetItemForm
+        case .setBudet(let list):
+            let setBudget = modalType.sourceViewController as! BudgetListBudgetFormVC
+            setBudget.list = list
+            viewController = setBudget
+        }
+        
+        modal.modalTransitionStyle = .crossDissolve
+        modal.formType = modalType
+        completion(viewController)
+        modal.present(viewController, from: tab, animated: true)
+    }
+}
 
