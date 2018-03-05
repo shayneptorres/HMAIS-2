@@ -36,18 +36,15 @@ class BudgetItemForm: UIViewController {
             addBtn.rx.tap.bind(onNext: {
                 guard
                     self.nameTextField.text != "",
-                    let list = self.list,
                     let modal = self.parent as? ModalFormNav
                 else { return }
                 
-                let newItem = Item()
-                newItem.name = self.nameTextField.text ?? ""
-                newItem.price = (self.costTextField.text ?? "").fromCurrencyToDouble()
-                
-                if self.selectedSection != nil {
-                    list.add(item: newItem, toSectionWithID: self.selectedSection?.id ?? 0)
+                if self.item != nil {
+                    // updating an existing item
+                    self.updateExistingItem()
                 } else {
-                    list.add(item: newItem)
+                    //creating a new item
+                    self.createNewItem()
                 }
                 
                 self.delegate?.itemWasAdded()
@@ -77,29 +74,66 @@ class BudgetItemForm: UIViewController {
         }
     }
     
-    @IBOutlet weak var sectionPickerHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var pickerHeight: NSLayoutConstraint!
+    @IBOutlet weak var addItemToSectionLabel: UILabel!
+    
+    @IBOutlet weak var nameTFcontainer: UIView! {
+        didSet {
+            nameTFcontainer.applyShadow(.normal(.bottom))
+            nameTFcontainer.layer.cornerRadius = 4
+        }
+    }
     
     let trash = DisposeBag()
     var delegate: BudgetItemFormDelegate?
     var list: ItemList?
+    var item: Item?
     var selectedSection: ListSection?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if list == nil {
-            sectionPickerHeight.constant = 0
+        guard let list = list else { return }
+        
+        if let item = item {
+            nameTextField.text = item.name
+            costTextField.text = "\(item.price)".toCurrency()
+        }
+        
+        if list.sections.isEmpty {
+            pickerHeight.constant = 0
+            addItemToSectionLabel.text = nil
         }
         
         if let section = selectedSection {
-            let sectionIndex = list?.sections.index(of: section) ?? 0
+            let sectionIndex = list.sections.index(of: section) ?? 0
             sectionPicker.selectRow(sectionIndex, inComponent: 0, animated: true)
         }
         
-        
-        
-        
         nameTextField.becomeFirstResponder()
+    }
+    
+    func createNewItem() {
+        guard let list = self.list else { return }
+        
+        let newItem = Item()
+        newItem.name = self.nameTextField.text ?? ""
+        newItem.price = (self.costTextField.text ?? "").fromCurrencyToDouble()
+        
+        if self.selectedSection != nil {
+            list.add(item: newItem, toSectionWithID: self.selectedSection?.id ?? 0)
+        } else {
+            list.add(item: newItem)
+        }
+    }
+    
+    func updateExistingItem() {
+        item?.update { updatedItem in
+            updatedItem.name = self.nameTextField.text ?? ""
+            updatedItem.price = (self.costTextField.text ?? "").fromCurrencyToDouble()
+            updatedItem.sectionID = selectedSection?.id ?? 0
+        }
     }
     
     @objc func selectCostField() {

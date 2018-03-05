@@ -185,10 +185,11 @@ extension ModalPresentable where Self: UIViewController {
             let shoppingItemForm = modalType.sourceViewController as! ShoppingItemFormVC
             shoppingItemForm.editingItem = item
             viewController = shoppingItemForm
-        case .addBudgetItem(let list, let section, _):
+        case .addBudgetItem(let list, let section, let item):
             let budgetItemForm = modalType.sourceViewController as! BudgetItemForm
             budgetItemForm.list = list
             budgetItemForm.selectedSection = section
+            budgetItemForm.item = item
             viewController = budgetItemForm
         case .setBudet(let list):
             let setBudget = modalType.sourceViewController as! BudgetListBudgetFormVC

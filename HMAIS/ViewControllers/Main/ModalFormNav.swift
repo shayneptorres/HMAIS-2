@@ -29,11 +29,11 @@ extension ModalFormType {
             return 200
         case .addBudgetItem(_, let section, _):
             if section != nil {
-                return 315
+                return 285
             }
-            return 250
+            return 225
         case .setBudet:
-            return 175
+            return 150
         }
     }
     

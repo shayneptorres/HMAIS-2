@@ -28,6 +28,21 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
     var rowSelectionCompletion: ((_ item: Item) -> ())?
     var list: ItemList?
     
+    func handleDeleteSection(section: ListSection) {
+        let alert = UIAlertController(title: "\(section.name)", message: "Deleting this section will delete all of its items. Do you wish to do this?", preferredStyle: .actionSheet)
+        
+        let deleteAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+            section.totalDelete()
+            self.viewController?.viewModel.inputs.reloadList(withListID: self.viewController?.list?.id ?? 0)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.viewController?.present(alert, animated: true, completion: nil)
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         // if the list has sections, return the section count, else return 2 section
         // +1 to account for the summary section
@@ -54,7 +69,9 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
         
         if indexPath.section == 0 {
             let summaryCell = tableView.dequeueReusableCell(withIdentifier: CellID.budgetListSummaryCell.rawValue) as! BudgetListSummaryCell
-            summaryCell.configure(withList: list)
+            summaryCell.configure(withList: list) {
+                self.viewController?.showEditBudgetVC()
+            }
             return summaryCell
         }
         
@@ -84,41 +101,63 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if data.isEmpty && sections.isEmpty { return }
-        let item = sections.isEmpty ? data[indexPath.row] : sections[indexPath.section].getItems()[indexPath.row]
-        rowSelectionCompletion?(item)
+        
+        let item = sections.isEmpty ? data[indexPath.row] : sections[indexPath.section - 1].getItems()[indexPath.row]
+        
+        if sections.isEmpty {
+            viewController?.showBudgetItemForm(forItem: item, inSection: nil)
+        } else {
+            viewController?.showBudgetItemForm(forItem: item, inSection: sections[indexPath.section - 1])
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
+        if section == 0 || sections.isEmpty {
             return 0.001
         }
         return 40
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        guard indexPath.section != 0 else { return false } // do no edit summary cell
+        
+        if data.isEmpty && sections.isEmpty { return false } // do not edit empty cell
+        
+        return true
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard !sections.isEmpty, section != 0 else { return nil }
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CellID.budgetSectionHeader.rawValue) as! BudgetListSectionHeader
-        let section = sections[section - 1]
-        header.configure(withSection: section) {
-            self.sectionAddBtnCompletion?(section)
+        let chosenSection = sections[section - 1]
+        header.configure(withSection: chosenSection) {
+            self.sectionAddBtnCompletion?(chosenSection)
         }
-        
-//        if tableView.isEditing {
-//            // if table is editing, completion will delete the section an all its items
-//            header.btnStyle = .delete
-//            header.configure(withName: sections[section].name) {
-//                self.handleDeleteSection(section: self.sections[section])
-//            }
-//
-//        } else {
-//            // if the table is not editing, the completion will add an item to the section
-//            header.btnStyle = .add
-//            header.configure(withName: sections[section].name) {
-//                self.sectionAddBtnCompletion?(self.sections[section])
-//            }
-//        }
-        
+        if tableView.isEditing {
+            // if table is editing, completion will delete the section an all its items
+            header.btnStyle = .delete
+            header.configure(withSection: chosenSection) {
+                self.handleDeleteSection(section: chosenSection)
+            }
+        } else {
+            // if the table is not editing, the completion will add an item to the section
+            header.btnStyle = .add
+            header.configure(withSection: chosenSection) {
+                self.sectionAddBtnCompletion?(chosenSection)
+            }
+        }
         return header
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -133,13 +172,29 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
         return [
             UITableViewRowAction.init(style: .destructive, title: "Delete", handler: { _, _ in
                 item.delete()
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                Timer.after(0.3) {
-                    //
-                    self.viewController?.reloadTable(animated: false)
+
+                if !self.sections.isEmpty {
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    Timer.after(0.3) {
+                        self.viewController?.signalVMReloadTable()
+                    }
+                } else {
+                    self.viewController?.signalVMReloadTable()
                 }
             })
         ]
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if sections.isEmpty {
+            
+        } else {
+            var item = sections[sourceIndexPath.section - 1].getItems().sorted(by: {i1, i2 in i1.createdAt > i2.createdAt })[sourceIndexPath.row]
+            let sectionID = sections[destinationIndexPath.section - 1].id
+            item.update(completion: { updatedItem in
+                updatedItem.sectionID = sectionID
+            })
+        }
     }
     
 }

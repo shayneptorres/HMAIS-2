@@ -102,12 +102,12 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         
         viewModel.outputs.reloadTable.subscribe(onNext: { items in
             
-            list.sections.isEmpty ? (delegate.data = list.items.toArray()) : (delegate.sections = list.sections.toArray())
+            self.setDelegateData(delegate: delegate)
             
             if let budgetDelegate = delegate as? BudgetListTableViewDelegate {
-                budgetDelegate.rowSelectionCompletion = { i in
-                    
-                }
+//                budgetDelegate.rowSelectionCompletion = { i in
+//
+//                }
                 
                 budgetDelegate.list = list
                 
@@ -131,7 +131,8 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         }).disposed(by: trash)
         
         viewModel.outputs.reloadTableWithSections.subscribe(onNext: { sections in
-            list.sections.isEmpty ? (delegate.data = list.items.toArray()) : (delegate.sections = sections)
+            
+            self.setDelegateData(delegate: delegate)
             
             if let budgetDelegate = delegate as? BudgetListTableViewDelegate {
                 budgetDelegate.rowSelectionCompletion = { i in
@@ -169,7 +170,7 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         
         viewModel.outputs.reloadSection.subscribe(onNext: { (section, data) in
             
-            delegate.sections = data
+            self.setDelegateData(delegate: delegate)
             
             if let budgetDelegate = delegate as? BudgetListTableViewDelegate {
                 budgetDelegate.rowSelectionCompletion = { i in
@@ -205,6 +206,18 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         observeKeyboard()
     }
     
+    func setDelegateData(delegate: ListTableViewDelegate) {
+        guard let list = list else { return }
+        
+        if list.sections.isEmpty {
+            delegate.data = list.items.toArray()
+            delegate.sections = []
+        } else {
+            delegate.sections = list.sections.toArray()
+            delegate.data = []
+        }
+    }
+    
     func configureUI(withListType type: ListItemType) {
         switch type {
         case .shopping:
@@ -219,13 +232,15 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         
     }
     
+    func signalVMReloadTable() {
+        self.viewModel.inputs.reloadList(withListID: list?.id ?? 0)
+    }
+    
     func animateReloadTable() {
-        guard let list = list else { return }
         UIView.transition(with: tableView, duration: 0.2, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() }, completion: nil)
     }
     
     func reloadTable(animated: Bool) {
-        guard let list = list else { return }
         let duration = animated ? 0.2 : 0.0
         UIView.transition(with: tableView, duration: duration, options: .transitionCrossDissolve, animations: { self.tableView.reloadData() }, completion: nil)
     }
@@ -269,7 +284,7 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
                     addSectionVC.delegate = self
                 }
             },
-            UIAlertAction(title: "Delete", style: .destructive) { _ in
+            UIAlertAction(title: "Delete list", style: .destructive) { _ in
                 // show an alert to make sure the user wants to delete this list
                 actionSheet.createActionSheet(withTitle: "Delete list '\(list.name)'", message: "Are you sure you want to delete this list?", withActions: [
                     UIAlertAction(title: "Yes", style: .destructive) { _ in
@@ -291,14 +306,27 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         
         if let budgetDelegate = self.listTableDelegate as? BudgetListTableViewDelegate {
             actions.insert(UIAlertAction(title: "Set Budget", style: .default) { _ in
-                self.presentModal(modalType: .setBudet(list: list)) { vc in
-                    guard let setBudgetVC = vc as? BudgetListBudgetFormVC else { return }
-                    setBudgetVC.delegate = self
-                }
+                self.showEditBudgetVC()
             }, at: 0)
         }
         
         actionSheet.createActionSheet(withTitle: "\(list.name)", withActions: actions)
+    }
+    
+    func showEditBudgetVC() {
+        guard let list = list else { return }
+        self.presentModal(modalType: .setBudet(list: list)) { vc in
+            guard let setBudgetVC = vc as? BudgetListBudgetFormVC else { return }
+            setBudgetVC.delegate = self
+        }
+    }
+    
+    func showBudgetItemForm(forItem item: Item?, inSection section: ListSection?) {
+        guard let list = list else { return }
+        presentModal(modalType: .addBudgetItem(list: list, section: section, item: item), completion: { vc in
+            guard let budgetItemForm = vc as? BudgetItemForm else { return }
+            budgetItemForm.delegate = self
+        })
     }
     
     func beginEditingTableView() {
@@ -310,7 +338,6 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
             self.tableView.reloadData()
         })
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(endEditingTableView))
-        
     }
     
     @objc func endEditingTableView() {

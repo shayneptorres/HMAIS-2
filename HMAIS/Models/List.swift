@@ -20,6 +20,7 @@ class ItemList : Object, RealmManagable, ListItemTypable, Totalable, Summarizabl
     @objc dynamic var createdAt = Date()
     @objc dynamic var type = 1
     @objc dynamic var budget: Double = 0
+    @objc dynamic var favorite: Bool = false
     
     var items = List<Item>()
     var sections = List<ListSection>()
@@ -86,5 +87,17 @@ class ItemList : Object, RealmManagable, ListItemTypable, Totalable, Summarizabl
             self.items.append(newItem)
             self.updatedAt = Date()
         }
+    }
+    
+    static func getRecentlyUsed() -> [ItemList] {
+        let realm = try! Realm()
+        realm.refresh()
+        return realm.objects(ItemList.self).sorted(byKeyPath: "updatedAt").toArray()
+    }
+    
+    static func getFavoriteLists() -> [ItemList] {
+        let realm = try! Realm()
+        realm.refresh()
+        return realm.objects(ItemList.self).filter("favorite == true").toArray()
     }
 }

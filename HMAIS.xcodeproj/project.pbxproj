@@ -60,6 +60,8 @@
 		B8E8A28D20450BDB0005CCE8 /* BudgetItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8E8A28B20450BDB0005CCE8 /* BudgetItemCell.xib */; };
 		B8E8A28F204511560005CCE8 /* AlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E8A28E204511560005CCE8 /* AlertCreator.swift */; };
 		B8ED46362047948D00EE1A36 /* BudgetListBudgetFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED46352047948D00EE1A36 /* BudgetListBudgetFormVC.swift */; };
+		B8ED4638204D012B00EE1A36 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED4637204D012B00EE1A36 /* DashboardVC.swift */; };
+		B8ED463A204D032100EE1A36 /* DashboardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED4639204D032100EE1A36 /* DashboardVM.swift */; };
 		B8F375A5201E79A5000654AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F375A4201E79A5000654AB /* AppDelegate.swift */; };
 		B8F375AA201E79A5000654AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8F375A8201E79A5000654AB /* Main.storyboard */; };
 		B8F375AC201E79A5000654AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8F375AB201E79A5000654AB /* Assets.xcassets */; };
@@ -147,6 +149,8 @@
 		B8E8A28B20450BDB0005CCE8 /* BudgetItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BudgetItemCell.xib; sourceTree = "<group>"; };
 		B8E8A28E204511560005CCE8 /* AlertCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCreator.swift; sourceTree = "<group>"; };
 		B8ED46352047948D00EE1A36 /* BudgetListBudgetFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListBudgetFormVC.swift; sourceTree = "<group>"; };
+		B8ED4637204D012B00EE1A36 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		B8ED4639204D032100EE1A36 /* DashboardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVM.swift; sourceTree = "<group>"; };
 		B8F375A1201E79A5000654AB /* HMAIS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HMAIS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F375A4201E79A5000654AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8F375A9201E79A5000654AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -333,6 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				B8D08D632038F8FF00E71724 /* ModalFormNav.swift */,
+				B8ED4637204D012B00EE1A36 /* DashboardVC.swift */,
+				B8ED4639204D032100EE1A36 /* DashboardVM.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -778,6 +784,7 @@
 				B87C1B23201EF0F400C9326E /* RealmManageable.swift in Sources */,
 				B8887D2E20464017008D8764 /* BudgetListSectionHeader.swift in Sources */,
 				B87C1B4B2021690900C9326E /* ItemListObserver.swift in Sources */,
+				B8ED4638204D012B00EE1A36 /* DashboardVC.swift in Sources */,
 				B81013CF203833FC00F24A78 /* ShoppingItemCell.swift in Sources */,
 				B8E8A2852043569C0005CCE8 /* InsetTextField.swift in Sources */,
 				B8F375A5201E79A5000654AB /* AppDelegate.swift in Sources */,
@@ -798,6 +805,7 @@
 				B859621A20217D8A007A8567 /* ListDetailVC.swift in Sources */,
 				B87C1B3C20203ED300C9326E /* ListsVM.swift in Sources */,
 				B859622220218FF4007A8567 /* SpendingItemFormVC.swift in Sources */,
+				B8ED463A204D032100EE1A36 /* DashboardVM.swift in Sources */,
 				B81013C32038321500F24A78 /* BudgetListTableViewDelegate.swift in Sources */,
 				B887A51E2026E6F200A2DBC5 /* ItemObserver.swift in Sources */,
 				B8E8A28C20450BDB0005CCE8 /* BudgetItemCell.swift in Sources */,

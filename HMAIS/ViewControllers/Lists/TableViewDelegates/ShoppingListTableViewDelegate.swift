@@ -166,11 +166,25 @@ class ShoppingListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let item = self.sections[indexPath.section].getItems()[indexPath.row]
+        var item = Item()
+        
+        if sections.isEmpty {
+            item = self.data[indexPath.row]
+        } else {
+            item = self.sections[indexPath.section].getItems()[indexPath.row]
+        }
+        
         return [
             UITableViewRowAction.init(style: .destructive, title: "Delete", handler: { _, _ in
                 item.delete()
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                if !self.sections.isEmpty {
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    Timer.after(0.3) {
+                        self.reloadCompletion?()
+                    }
+                } else {
+                    self.viewController?.signalVMReloadTable()
+                }
             }),
             UITableViewRowAction.init(style: .normal, title: "Edit", handler: { _, I in
                 if let listDetailVC = self.viewController {
@@ -194,6 +208,5 @@ class ShoppingListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate,
                 updatedItem.sectionID = sectionID
             })
         }
-        
     }
 }
