@@ -65,6 +65,13 @@ enum CellID: String {
     case budgetItemCell = "budgetItemCell"
     // Sections
     case budgetSectionHeader = "budgetListSectionHeader"
+    case dashSectionHeader = "dashSectionHeader"
+    // Dashboard
+    //// Collection View
+    case listCollectionCell = "listCollectionCell"
+    case emptyCollectionCell = "emptyCollectionCell"
+    //// Table view
+    case listCollectionTableCell = "listCollectionTableCell"
 }
 
 enum EmptyCellMessage {

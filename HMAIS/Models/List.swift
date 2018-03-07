@@ -92,7 +92,7 @@ class ItemList : Object, RealmManagable, ListItemTypable, Totalable, Summarizabl
     static func getRecentlyUsed() -> [ItemList] {
         let realm = try! Realm()
         realm.refresh()
-        return realm.objects(ItemList.self).sorted(byKeyPath: "updatedAt").toArray()
+        return realm.objects(ItemList.self).sorted(byKeyPath: "updatedAt").toArray().reversed()
     }
     
     static func getFavoriteLists() -> [ItemList] {

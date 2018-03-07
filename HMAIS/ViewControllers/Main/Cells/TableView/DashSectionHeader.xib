@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Black</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RKN-ZS-UlJ" customClass="DashSectionHeader" customModule="HMAIS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17r-Wh-p3X">
+                    <rect key="frame" x="16" y="9" width="56" height="30.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHw-pG-wUm">
+                    <rect key="frame" x="319" y="12.5" width="24" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="WcE-6i-E1N"/>
+                        <constraint firstAttribute="height" constant="24" id="vJ8-9S-uAa"/>
+                    </constraints>
+                    <state key="normal" image="add_circle"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.9371530414" green="0.93731355670000005" blue="0.93714290860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="HhK-8m-Gyj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="17r-Wh-p3X" secondAttribute="trailing" constant="8" id="8nw-iB-S1X"/>
+                <constraint firstItem="17r-Wh-p3X" firstAttribute="centerY" secondItem="HhK-8m-Gyj" secondAttribute="centerY" id="BwY-P8-r5l"/>
+                <constraint firstItem="KHw-pG-wUm" firstAttribute="centerY" secondItem="HhK-8m-Gyj" secondAttribute="centerY" id="Vno-BI-kge"/>
+                <constraint firstItem="17r-Wh-p3X" firstAttribute="leading" secondItem="HhK-8m-Gyj" secondAttribute="leading" constant="16" id="cmt-e7-LGZ"/>
+                <constraint firstItem="HhK-8m-Gyj" firstAttribute="trailing" secondItem="KHw-pG-wUm" secondAttribute="trailing" constant="32" id="hVS-pw-5eb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="HhK-8m-Gyj"/>
+            <connections>
+                <outlet property="addBtn" destination="KHw-pG-wUm" id="Cgu-I1-WI9"/>
+                <outlet property="sectionName" destination="17r-Wh-p3X" id="yNd-6G-TZ4"/>
+            </connections>
+            <point key="canvasLocation" x="-149.5" y="-20"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="add_circle" width="35" height="35"/>
+    </resources>
+</document>

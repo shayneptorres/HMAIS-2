@@ -95,7 +95,7 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settings_btn_three_dots.png"), style: .plain, target: self, action: #selector(showListSettingsAlert))
         
-        self.navigationItem.title = "\(list.name)"
+        setTitle()
         
         delegate.viewController = self
         delegate.registerTableViewCells(forTableView: tableView)
@@ -203,7 +203,25 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
         observeKeyboard()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let dash = self.navigationController?.viewControllers[0] as? DashboardVC {
+            self.navigationController?.navigationBar.isHidden = true
+        }
+    }
+    
+    func setTitle() {
+        guard let list = list else { return }
+        var title = list.name
+        if list.favorite {
+            title = "\(list.name) ⭐️"
+        }
+        self.navigationItem.title = title
     }
     
     func setDelegateData(delegate: ListTableViewDelegate) {
@@ -275,6 +293,7 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         guard let list = list else { return }
         
         let actionSheet = ActionSheetCreator(viewController: self)
+        var favoriteTitle = list.favorite ? "Unfavorite list" : "Favorite list"
         
         var actions: [UIAlertAction] = [
             UIAlertAction(title: "Add section", style: .default) { _ in
@@ -282,6 +301,15 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
                 self.presentModal(modalType: ModalFormType.addSection(list: list)) { viewController in
                     guard let addSectionVC = viewController as? AddSectionFormVC else { return }
                     addSectionVC.delegate = self
+                }
+            },
+            UIAlertAction(title: favoriteTitle, style: .default) { _ in
+                // present a modal with the add section form
+                self.list?.update { updatedList in
+                    updatedList.favorite = !updatedList.favorite
+                }
+                Timer.after(0.4.second) {
+                    self.setTitle()
                 }
             },
             UIAlertAction(title: "Delete list", style: .destructive) { _ in

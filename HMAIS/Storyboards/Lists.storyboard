@@ -75,7 +75,7 @@
         <!--List DetailVC-->
         <scene sceneID="yfO-Jy-WD7">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="tvU-rh-poO" customClass="ListDetailVC" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListDetail" hidesBottomBarWhenPushed="YES" id="tvU-rh-poO" customClass="ListDetailVC" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QSI-CA-BLK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

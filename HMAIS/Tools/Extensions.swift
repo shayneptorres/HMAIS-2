@@ -90,6 +90,19 @@ extension UIView {
         self.layer.masksToBounds = false
         
     }
+    
+//    https://stackoverflow.com/questions/37163850/round-top-corners-of-a-uibutton-in-swift
+    
+    func roundCorners(corners: UIRectCorner, radii: CGFloat){
+        let maskPAth1 = UIBezierPath(roundedRect: self.bounds,
+                                     byRoundingCorners: corners,
+                                     cornerRadii:CGSize(width: radii, height: radii))
+        let maskLayer1 = CAShapeLayer()
+        maskLayer1.frame = self.bounds
+        maskLayer1.path = maskPAth1.cgPath
+        self.layer.mask = maskLayer1
+        
+    }
 }
 
 extension UIResponder {

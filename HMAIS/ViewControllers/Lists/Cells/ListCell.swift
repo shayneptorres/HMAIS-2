@@ -18,9 +18,18 @@ class ListCell: UITableViewCell {
     func configure(withList list: ItemList) {
         indicatorTab.backgroundColor = list.listItemType.indicatorColor
         indicatorImageView.image = list.listItemType.indicatorImage
-        listNameLabel.text = list.name
+        print(list.favorite)
+        var name = list.favorite ? list.name : "\(list.name) ⭐️"
+        if list.favorite == false {
+           name = list.name
+        } else {
+            name = "\(list.name) ⭐️"
+        }
+        
+        listNameLabel.text = name
         container.layer.cornerRadius = 8
         container.applyShadow(.normal(.bottom))
+        indicatorTab.roundCorners(corners: [.topLeft, .bottomLeft], radii: 8)
         self.selectionStyle = .none
     }
     
