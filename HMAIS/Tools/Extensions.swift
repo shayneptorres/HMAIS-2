@@ -127,3 +127,11 @@ extension UIResponder {
         UIResponder.currentFirstResponder = self
     }
 }
+
+extension CGPoint {
+    func distance(fromPoint point: CGPoint) -> CGFloat {
+        let xDist = self.x - point.x
+        let yDist = self.y - point.y
+        return CGFloat(sqrt((xDist * xDist) + (yDist * yDist)))
+    }
+}

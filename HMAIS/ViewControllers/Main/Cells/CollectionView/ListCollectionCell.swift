@@ -21,6 +21,9 @@ class ListCollectionCell: UICollectionViewCell {
     var list: ItemList?
     let trash = DisposeBag()
     var tapCompletion: ((_ item: ItemList) -> ())?
+    var initialLocation = CGPoint()
+    var pressDidChange = false
+    
     
     func configure(withList list: ItemList) {
         self.list = list
@@ -49,6 +52,39 @@ class ListCollectionCell: UICollectionViewCell {
             valueLabel.text = "Tap to assign this list a category"
         }
         
+        let down = UILongPressGestureRecognizer()
+        down.minimumPressDuration = 0.3
+        down.rx.event.bind(onNext: { gesture in
+            switch gesture.state {
+            case .began:
+                self.initialLocation = gesture.location(in: self.containerView)
+                self.shrinkCell()
+            case .ended:
+                self.restoreCell()
+                if self.pressDidChange {
+                    print()
+                } else {
+                    self.tapCompletion?(list)
+                }
+                self.pressDidChange = false
+            case .cancelled:
+                self.restoreCell()
+            case .changed:
+                
+                let currentLocation = gesture.location(in: self.containerView)
+                
+                if self.initialLocation.distance(fromPoint: currentLocation) > 30 {
+                    self.pressDidChange = true
+                    self.restoreCell()
+                }
+                
+            default: break
+            }
+        })
+        .disposed(by: trash)
+        
+        let tapDown = UITapGestureRecognizer()
+        
         let tap = UITapGestureRecognizer()
         
         tap.rx.event.bind(onNext: { event in
@@ -60,7 +96,8 @@ class ListCollectionCell: UICollectionViewCell {
         })
         .disposed(by: trash)
         
-        containerView.addGestureRecognizer(tap)
+        containerView.addGestureRecognizer(down)
+        
         
     }
     
