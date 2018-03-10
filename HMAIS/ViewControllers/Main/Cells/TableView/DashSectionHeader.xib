@@ -28,7 +28,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHw-pG-wUm">
-                    <rect key="frame" x="319" y="12.5" width="24" height="24"/>
+                    <rect key="frame" x="335" y="12.5" width="24" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="24" id="WcE-6i-E1N"/>
                         <constraint firstAttribute="height" constant="24" id="vJ8-9S-uAa"/>
@@ -42,7 +42,7 @@
                 <constraint firstItem="17r-Wh-p3X" firstAttribute="centerY" secondItem="HhK-8m-Gyj" secondAttribute="centerY" id="BwY-P8-r5l"/>
                 <constraint firstItem="KHw-pG-wUm" firstAttribute="centerY" secondItem="HhK-8m-Gyj" secondAttribute="centerY" id="Vno-BI-kge"/>
                 <constraint firstItem="17r-Wh-p3X" firstAttribute="leading" secondItem="HhK-8m-Gyj" secondAttribute="leading" constant="16" id="cmt-e7-LGZ"/>
-                <constraint firstItem="HhK-8m-Gyj" firstAttribute="trailing" secondItem="KHw-pG-wUm" secondAttribute="trailing" constant="32" id="hVS-pw-5eb"/>
+                <constraint firstItem="HhK-8m-Gyj" firstAttribute="trailing" secondItem="KHw-pG-wUm" secondAttribute="trailing" constant="16" id="hVS-pw-5eb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="HhK-8m-Gyj"/>
             <connections>
