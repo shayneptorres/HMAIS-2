@@ -11,7 +11,7 @@ import UIKit
 
 enum ListItemType: Int {
     case new = 1
-    case shopping
+    case checklist
     case budget
 }
 
@@ -20,8 +20,8 @@ extension ListItemType {
         switch self {
         case .new:
             return "New"
-        case .shopping:
-            return "Shopping"
+        case .checklist:
+            return "Check"
         case .budget:
             return "Budget"
         }
@@ -31,7 +31,7 @@ extension ListItemType {
         switch self {
         case .new:
             return #imageLiteral(resourceName: "new_icon.png")
-        case .shopping:
+        case .checklist:
             return #imageLiteral(resourceName: "white_check.png")
         case .budget:
             return #imageLiteral(resourceName: "$.png")
@@ -42,7 +42,7 @@ extension ListItemType {
         switch self {
         case .new:
             return #colorLiteral(red: 0.8745098039, green: 0.2156862745, blue: 0.9019607843, alpha: 1)
-        case .shopping:
+        case .checklist:
             return #colorLiteral(red: 0.4830000103, green: 0.8349999785, blue: 0, alpha: 1)
         case .budget:
             return #colorLiteral(red: 0.9679999948, green: 0.6549999714, blue: 0, alpha: 1)
@@ -59,8 +59,8 @@ enum CellID: String {
     case spendingCostCell = "spendingCostCell"
     case formEntryCell = "formEntryCell"
     // Items
-    case shoppingItemCell = "shoppingItemCell"
-    case shoppingSectionHeader = "shoppingSectionHeader"
+    case checkItemCell = "checkItemCell"
+    case checkListSectionHeader = "checkListSectionHeader"
     case budgetListSummaryCell = "budgetListSummaryCell"
     case budgetItemCell = "budgetItemCell"
     // Sections

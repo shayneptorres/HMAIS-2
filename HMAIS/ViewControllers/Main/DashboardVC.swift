@@ -144,7 +144,7 @@ extension DashboardVC: UITableViewDelegate, UITableViewDataSource {
         listCollectionTableCell.cellTapCompletion = { list in
             if list.listItemType == .new {
                 actionCreator.createActionSheet(withTitle: "Categorize '\(list.name)'", message: "This list does not have a category set one now to use it.", withActions: [
-                        UIAlertAction(title: "Make Shopping list", style: .default, handler: { _ in
+                        UIAlertAction(title: "Make Check list", style: .default, handler: { _ in
                             self.animateSelectListTypeAndShoDetails(typeRaw: 2, list: list)
                         }),
                         UIAlertAction(title: "Make Budget list", style: .default, handler: { _ in

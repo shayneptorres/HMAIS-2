@@ -133,10 +133,10 @@
             </objects>
             <point key="canvasLocation" x="-423.19999999999999" y="875.71214392803608"/>
         </scene>
-        <!--Shopping Item FormVC-->
+        <!--Check Item FormVC-->
         <scene sceneID="wPh-5d-mJB">
             <objects>
-                <viewController storyboardIdentifier="ShoppingItemForm" id="CdI-XT-Mv4" customClass="ShoppingItemFormVC" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CheckItemForm" id="CdI-XT-Mv4" customClass="CheckItemFormVC" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Leu-ew-gqd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

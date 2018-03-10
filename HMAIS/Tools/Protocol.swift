@@ -23,7 +23,7 @@ protocol ListItemTypable {
 
 extension ListItemTypable where Self: ItemList {
     var listItemType: ListItemType {
-        return ListItemType(rawValue: self.type) ?? .shopping
+        return ListItemType(rawValue: self.type) ?? .checklist
     }
 }
 
@@ -68,7 +68,7 @@ protocol Summarizable {}
 
 extension Summarizable where Self: ItemList {
     var summary: String {
-        if self.listItemType == .shopping {
+        if self.listItemType == .checklist {
             let completed = items.filter({ item in
                 item.completed == true
             })
@@ -182,9 +182,9 @@ extension ModalPresentable where Self: UIViewController {
             addItem.listSection = section
             viewController = addItem
         case .editItem(let item):
-            let shoppingItemForm = modalType.sourceViewController as! ShoppingItemFormVC
-            shoppingItemForm.editingItem = item
-            viewController = shoppingItemForm
+            let checkItemForm = modalType.sourceViewController as! CheckItemFormVC
+            checkItemForm.editingItem = item
+            viewController = checkItemForm
         case .addBudgetItem(let list, let section, let item):
             let budgetItemForm = modalType.sourceViewController as! BudgetItemForm
             budgetItemForm.list = list

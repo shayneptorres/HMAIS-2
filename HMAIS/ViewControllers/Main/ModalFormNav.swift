@@ -59,7 +59,7 @@ extension ModalFormType {
         case .addItemToSection:
             return self.storyboard.instantiateViewController(withIdentifier: "AddItemToSection")
         case .editItem:
-            return self.storyboard.instantiateViewController(withIdentifier: "ShoppingItemForm")
+            return self.storyboard.instantiateViewController(withIdentifier: "CheckItemForm")
         case .addBudgetItem:
             return self.storyboard.instantiateViewController(withIdentifier: "BudgetItemForm")
         case .setBudet:

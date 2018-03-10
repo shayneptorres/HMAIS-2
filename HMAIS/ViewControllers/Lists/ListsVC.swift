@@ -218,9 +218,9 @@ extension ListsVC: UITableViewDelegate, UITableViewDataSource {
             // assign a list type
             let alert = UIAlertController(title: "\(list.name)", message: "\(list.name) is a new list, assign it a type.", preferredStyle: .actionSheet)
             let budgetOption = UIAlertAction(title: "Make Budget list", style: .default) { _ in self.assignListType(list: list, newType: 3) }
-            let shoppingOption = UIAlertAction(title: "Make Shopping list", style: .default) { _ in self.assignListType(list: list, newType: 2) }
+            let checkListOption = UIAlertAction(title: "Make Check list", style: .default) { _ in self.assignListType(list: list, newType: 2) }
             let cancelOption = UIAlertAction(title: "Cancel", style: .cancel) { _ in  }
-            alert.addAction(shoppingOption)
+            alert.addAction(checkListOption)
             alert.addAction(budgetOption)
             alert.addAction(cancelOption)
             present(alert, animated: true)

@@ -1,5 +1,5 @@
 //
-//  ShoppingListTableViewDelegate.swift
+//  CheckListTableViewDelegate.swift
 //  HMAIS
 //
 //  Created by Shayne Torres on 2/17/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ShoppingListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class CheckListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, UITableViewDataSource {
     
     var infoButtonCompletion: ((_ item: Item) -> ())?
     
@@ -29,11 +29,11 @@ class ShoppingListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate,
     override func registerTableViewCells(forTableView tableView: UITableView) {
         super.registerTableViewCells(forTableView: tableView)
         
-        var nib = UINib(nibName: "ShoppingItemCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: CellID.shoppingItemCell.rawValue)
+        var nib = UINib(nibName: "CheckItemCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: CellID.checkItemCell.rawValue)
         
         nib = UINib(nibName: "ListSectionHeader", bundle: nil)
-        tableView.register(nib, forHeaderFooterViewReuseIdentifier: CellID.shoppingSectionHeader.rawValue)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: CellID.checkListSectionHeader.rawValue)
         
     }
     
@@ -76,7 +76,7 @@ class ShoppingListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate,
             cell = emptyCell
         } else {
             
-            let itemCell = tableView.dequeueReusableCell(withIdentifier: CellID.shoppingItemCell.rawValue) as! ShoppingItemCell
+            let itemCell = tableView.dequeueReusableCell(withIdentifier: CellID.checkItemCell.rawValue) as! CheckItemCell
             var displayedItem: Item
             
             if sections.isEmpty { // If there are no sections, show all items
@@ -102,7 +102,7 @@ class ShoppingListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard !sections.isEmpty else { return nil }
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CellID.shoppingSectionHeader.rawValue) as! ListSectionHeader
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CellID.checkListSectionHeader.rawValue) as! ListSectionHeader
         
         if tableView.isEditing {
             // if table is editing, completion will delete the section an all its items
