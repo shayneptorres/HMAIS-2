@@ -69,7 +69,7 @@ class AddItemToSectionVC: UIViewController {
     }
     
     func handleSubmitItemFromTextField(textField: UITextField) {
-        if let text = textField.text {
+        if let text = textField.text, textField.text != "" {
             let item = Item()
             item.name = text
             list.add(item: item, toSectionWithID: listSection.id)
