@@ -30,7 +30,7 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
                 .tap
                 .bind(onNext: { [weak self] in
                     guard let s = self, let list = s.list else { return }
-                    if list.listItemType == .shopping {
+                    if list.listItemType == .checklist {
                         s.miniForm.beginEditing()
                     } else {
                         self?.presentModal(modalType: ModalFormType.addBudgetItem(list: list, section: nil, item: nil)) { vc in
@@ -65,16 +65,16 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         super.viewDidLoad()
         
         // set up the table view delegate based on the list type
-        listTableDelegate = (list?.type == 2) ? ShoppingListTableViewDelegate() : BudgetListTableViewDelegate()
+        listTableDelegate = (list?.type == 2) ? CheckListTableViewDelegate() : BudgetListTableViewDelegate()
         
-        configureUI(withListType: list?.listItemType ?? .shopping)
+        configureUI(withListType: list?.listItemType ?? .checklist)
         
         listTableDelegate?.sectionAddBtnCompletion = { section in
             guard
                 let list = self.list
             else { return }
 
-            if list.listItemType == .shopping {
+            if list.listItemType == .checklist {
                 self.presentModal(modalType: ModalFormType.addItemToSection(list: list, section: section)) { viewController in
                     guard let addItemToSection = viewController as? AddItemToSectionVC else { return }
                     addItemToSection.delegate = self
@@ -112,17 +112,17 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
                 budgetDelegate.list = list
                 
                 self.animateReloadTable()
-            } else if let shoppingDelegate = delegate as? ShoppingListTableViewDelegate {
-                shoppingDelegate.infoButtonCompletion = { i in
+            } else if let checkListDelegate = delegate as? CheckListTableViewDelegate {
+                checkListDelegate.infoButtonCompletion = { i in
                     // when the info button is tapped, display the info settings alert
                     self.showAlert(forItem: i)
                 }
                 
-                shoppingDelegate.reloadCompletion = {
+                checkListDelegate.reloadCompletion = {
                     self.animateReloadTable()
                 }
                 
-                shoppingDelegate.reloadCompletion?()
+                checkListDelegate.reloadCompletion?()
             }
             
             
@@ -150,17 +150,17 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
                 
                 self.reloadTable(animated: true)
                 
-            } else if let shoppingDelegate = delegate as? ShoppingListTableViewDelegate {
-                shoppingDelegate.infoButtonCompletion = { i in
+            } else if let checkListDelegate = delegate as? CheckListTableViewDelegate {
+                checkListDelegate.infoButtonCompletion = { i in
                     // when the info button is tapped, display the info settings alert
                     self.showAlert(forItem: i)
                 }
                 
-                shoppingDelegate.reloadCompletion = {
+                checkListDelegate.reloadCompletion = {
                     self.animateReloadTable()
                 }
                 
-                shoppingDelegate.reloadCompletion?()
+                checkListDelegate.reloadCompletion?()
             }
             
             
@@ -178,17 +178,17 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
                 }
                 
                 budgetDelegate.list = list
-            } else if let shoppingDelegate = delegate as? ShoppingListTableViewDelegate {
-                shoppingDelegate.infoButtonCompletion = { i in
+            } else if let checkListDelegate = delegate as? CheckListTableViewDelegate {
+                checkListDelegate.infoButtonCompletion = { i in
                     // when the info button is tapped, display the info settings alert
                     self.showAlert(forItem: i)
                 }
                 
-                shoppingDelegate.reloadCompletion = {
+                checkListDelegate.reloadCompletion = {
                     self.animateReloadSection(section: section)
                 }
                 
-                shoppingDelegate.reloadCompletion?()
+                checkListDelegate.reloadCompletion?()
             }
             
             
@@ -238,7 +238,7 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
     
     func configureUI(withListType type: ListItemType) {
         switch type {
-        case .shopping:
+        case .checklist:
             self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.4830000103, green: 0.8349999785, blue: 0, alpha: 1)
             self.addBtn.backgroundColor = #colorLiteral(red: 0.4830000103, green: 0.8349999785, blue: 0, alpha: 1)
         case .budget:
@@ -271,8 +271,8 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
 
     func displayEditItemModal(forItem item: Item) {
         presentModal(modalType: .editItem(item: item)) { viewController in
-            guard let shoppingItemForm = viewController as? ShoppingItemFormVC else { return }
-            shoppingItemForm.delegate = self
+            guard let checkItemForm = viewController as? CheckItemFormVC else { return }
+            checkItemForm.delegate = self
         }
     }
     
@@ -474,7 +474,7 @@ extension ListDetailVC: AddSectionDelegate {
     }
 }
 
-extension ListDetailVC: ShoppingItemFormDelegate {
+extension ListDetailVC: CheckItemFormDelegate {
     func itemWasUpdated() {
         guard let list = list else { return }
         self.viewModel.inputs.reloadList(withListID: list.id)

@@ -10,11 +10,11 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-protocol ShoppingItemFormDelegate {
+protocol CheckItemFormDelegate {
     func itemWasUpdated()
 }
 
-class ShoppingItemFormVC: UIViewController {
+class CheckItemFormVC: UIViewController {
 
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var countLabel: UILabel!
@@ -64,7 +64,7 @@ class ShoppingItemFormVC: UIViewController {
     
     let trash = DisposeBag()
     var editingItem: Item?
-    var delegate: ShoppingItemFormDelegate?
+    var delegate: CheckItemFormDelegate?
     
     var count = 0
     var name = ""

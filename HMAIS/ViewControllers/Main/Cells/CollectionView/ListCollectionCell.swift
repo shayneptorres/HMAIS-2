@@ -34,7 +34,7 @@ class ListCollectionCell: UICollectionViewCell {
         nameLabel.text = list.name
         
         switch list.listItemType {
-        case .shopping:
+        case .checklist:
             infoLabel.text = "Status:"
             let complete = list.items.filter({ $0.completed })
             valueLabel.text = "\(complete.count)/\(list.items.count) completed"

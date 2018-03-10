@@ -16,9 +16,9 @@
 		B81013C120381FAE00F24A78 /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B81013BF20381FAE00F24A78 /* ListCell.xib */; };
 		B81013C32038321500F24A78 /* BudgetListTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81013C22038321500F24A78 /* BudgetListTableViewDelegate.swift */; };
 		B81013C62038326C00F24A78 /* ListTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81013C52038326C00F24A78 /* ListTableViewDelegate.swift */; };
-		B81013C82038327A00F24A78 /* ShoppingListTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81013C72038327A00F24A78 /* ShoppingListTableViewDelegate.swift */; };
-		B81013CF203833FC00F24A78 /* ShoppingItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81013CD203833FC00F24A78 /* ShoppingItemCell.swift */; };
-		B81013D0203833FC00F24A78 /* ShoppingItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B81013CE203833FC00F24A78 /* ShoppingItemCell.xib */; };
+		B81013C82038327A00F24A78 /* CheckListTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81013C72038327A00F24A78 /* CheckListTableViewDelegate.swift */; };
+		B81013CF203833FC00F24A78 /* CheckItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81013CD203833FC00F24A78 /* CheckItemCell.swift */; };
+		B81013D0203833FC00F24A78 /* CheckItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B81013CE203833FC00F24A78 /* CheckItemCell.xib */; };
 		B81013D22038A8F800F24A78 /* ListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81013D12038A8F800F24A78 /* ListSection.swift */; };
 		B81013D42038C90000F24A78 /* ListSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81013D32038C90000F24A78 /* ListSectionHeader.swift */; };
 		B81013D62038C92B00F24A78 /* ListSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B81013D52038C92B00F24A78 /* ListSectionHeader.xib */; };
@@ -113,9 +113,9 @@
 		B81013BF20381FAE00F24A78 /* ListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
 		B81013C22038321500F24A78 /* BudgetListTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListTableViewDelegate.swift; sourceTree = "<group>"; };
 		B81013C52038326C00F24A78 /* ListTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewDelegate.swift; sourceTree = "<group>"; };
-		B81013C72038327A00F24A78 /* ShoppingListTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewDelegate.swift; sourceTree = "<group>"; };
-		B81013CD203833FC00F24A78 /* ShoppingItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemCell.swift; sourceTree = "<group>"; };
-		B81013CE203833FC00F24A78 /* ShoppingItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingItemCell.xib; sourceTree = "<group>"; };
+		B81013C72038327A00F24A78 /* CheckListTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListTableViewDelegate.swift; sourceTree = "<group>"; };
+		B81013CD203833FC00F24A78 /* CheckItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckItemCell.swift; sourceTree = "<group>"; };
+		B81013CE203833FC00F24A78 /* CheckItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckItemCell.xib; sourceTree = "<group>"; };
 		B81013D12038A8F800F24A78 /* ListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSection.swift; sourceTree = "<group>"; };
 		B81013D32038C90000F24A78 /* ListSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionHeader.swift; sourceTree = "<group>"; };
 		B81013D52038C92B00F24A78 /* ListSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSectionHeader.xib; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			children = (
 				B81013C22038321500F24A78 /* BudgetListTableViewDelegate.swift */,
 				B81013C52038326C00F24A78 /* ListTableViewDelegate.swift */,
-				B81013C72038327A00F24A78 /* ShoppingListTableViewDelegate.swift */,
+				B81013C72038327A00F24A78 /* CheckListTableViewDelegate.swift */,
 			);
 			path = TableViewDelegates;
 			sourceTree = "<group>";
@@ -380,8 +380,8 @@
 				B81013BB20381E7A00F24A78 /* EmptyTableCell.xib */,
 				B81013BE20381FAD00F24A78 /* ListCell.swift */,
 				B81013BF20381FAE00F24A78 /* ListCell.xib */,
-				B81013CD203833FC00F24A78 /* ShoppingItemCell.swift */,
-				B81013CE203833FC00F24A78 /* ShoppingItemCell.xib */,
+				B81013CD203833FC00F24A78 /* CheckItemCell.swift */,
+				B81013CE203833FC00F24A78 /* CheckItemCell.xib */,
 				B81013D32038C90000F24A78 /* ListSectionHeader.swift */,
 				B81013D52038C92B00F24A78 /* ListSectionHeader.xib */,
 				B8E8A2862043AF640005CCE8 /* BudgetListSummaryCell.swift */,
@@ -630,7 +630,7 @@
 				B8E8A2892043AF640005CCE8 /* BudgetListSummaryCell.xib in Resources */,
 				B8FBFD2F2031459700F90B1A /* MiniForm.xib in Resources */,
 				B81013D62038C92B00F24A78 /* ListSectionHeader.xib in Resources */,
-				B81013D0203833FC00F24A78 /* ShoppingItemCell.xib in Resources */,
+				B81013D0203833FC00F24A78 /* CheckItemCell.xib in Resources */,
 				B8F375AA201E79A5000654AB /* Main.storyboard in Resources */,
 				B8E8A2832042ACBE0005CCE8 /* Items.storyboard in Resources */,
 				B8DA288A204D12E4008566A6 /* DashSectionHeader.xib in Resources */,
@@ -837,7 +837,7 @@
 				B8887D2E20464017008D8764 /* BudgetListSectionHeader.swift in Sources */,
 				B87C1B4B2021690900C9326E /* ItemListObserver.swift in Sources */,
 				B8ED4638204D012B00EE1A36 /* DashboardVC.swift in Sources */,
-				B81013CF203833FC00F24A78 /* ShoppingItemCell.swift in Sources */,
+				B81013CF203833FC00F24A78 /* CheckItemCell.swift in Sources */,
 				B8E8A2852043569C0005CCE8 /* InsetTextField.swift in Sources */,
 				B8F375A5201E79A5000654AB /* AppDelegate.swift in Sources */,
 				B8D08D5E2038D6AB00E71724 /* AnimatedNavController.swift in Sources */,
@@ -867,7 +867,7 @@
 				B8FBFD2D2031453100F90B1A /* MiniForm.swift in Sources */,
 				B8DA2895204E7A68008566A6 /* EmptyCollectionCell.swift in Sources */,
 				B81013C020381FAE00F24A78 /* ListCell.swift in Sources */,
-				B81013C82038327A00F24A78 /* ShoppingListTableViewDelegate.swift in Sources */,
+				B81013C82038327A00F24A78 /* CheckListTableViewDelegate.swift in Sources */,
 				B87C1B2B201F868700C9326E /* Item.swift in Sources */,
 				B860E4452024360A0030FC04 /* SpendingCostCell.swift in Sources */,
 				B8E8A2812042AC730005CCE8 /* AddItemToSectionVC.swift in Sources */,

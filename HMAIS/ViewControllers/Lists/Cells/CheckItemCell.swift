@@ -1,5 +1,5 @@
 //
-//  ShoppingItemCell.swift
+//  CheckItemCell.swift
 //  HMAIS
 //
 //  Created by Shayne Torres on 2/17/18.
@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class ShoppingItemCell: UITableViewCell {
+class CheckItemCell: UITableViewCell {
     
     enum DisplayType {
         case editable

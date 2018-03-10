@@ -18,11 +18,11 @@ class AddItemToSectionVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            var nib = UINib(nibName: "ShoppingItemCell", bundle: nil)
-            tableView.register(nib, forCellReuseIdentifier: CellID.shoppingItemCell.rawValue)
+            var nib = UINib(nibName: "CheckItemCell", bundle: nil)
+            tableView.register(nib, forCellReuseIdentifier: CellID.checkItemCell.rawValue)
             
             nib = UINib(nibName: "ListSectionHeader", bundle: nil)
-            tableView.register(nib, forHeaderFooterViewReuseIdentifier: CellID.shoppingSectionHeader.rawValue)
+            tableView.register(nib, forHeaderFooterViewReuseIdentifier: CellID.checkListSectionHeader.rawValue)
             
             tableView.delegate = self
             tableView.dataSource = self
@@ -104,7 +104,7 @@ extension AddItemToSectionVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         
-        let itemCell = tableView.dequeueReusableCell(withIdentifier: CellID.shoppingItemCell.rawValue) as! ShoppingItemCell
+        let itemCell = tableView.dequeueReusableCell(withIdentifier: CellID.checkItemCell.rawValue) as! CheckItemCell
         itemCell.displayType = .displayOnly
         itemCell.configure(withItem: listSection.getItems()[indexPath.row]) {
             print("info button pressed")
@@ -126,7 +126,7 @@ extension AddItemToSectionVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CellID.shoppingSectionHeader.rawValue) as! ListSectionHeader
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CellID.checkListSectionHeader.rawValue) as! ListSectionHeader
         
         header.btnStyle = .none
         header.configure(withName: listSection.name) {}
