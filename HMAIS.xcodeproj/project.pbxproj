@@ -58,7 +58,7 @@
 		B8DA2892204D1C9C008566A6 /* ListCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DA2890204D1C9C008566A6 /* ListCollectionCell.xib */; };
 		B8DA2895204E7A68008566A6 /* EmptyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA2893204E7A68008566A6 /* EmptyCollectionCell.swift */; };
 		B8DA2896204E7A68008566A6 /* EmptyCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8DA2894204E7A68008566A6 /* EmptyCollectionCell.xib */; };
-		B8DC5BB0203E738B00149689 /* ShoppingItemForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5BAF203E738B00149689 /* ShoppingItemForm.swift */; };
+		B8DC5BB0203E738B00149689 /* CheckItemFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5BAF203E738B00149689 /* CheckItemFormVC.swift */; };
 		B8E8A2812042AC730005CCE8 /* AddItemToSectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E8A2802042AC730005CCE8 /* AddItemToSectionVC.swift */; };
 		B8E8A2832042ACBE0005CCE8 /* Items.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8E8A2822042ACBE0005CCE8 /* Items.storyboard */; };
 		B8E8A2852043569C0005CCE8 /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E8A2842043569C0005CCE8 /* InsetTextField.swift */; };
@@ -155,7 +155,7 @@
 		B8DA2890204D1C9C008566A6 /* ListCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCollectionCell.xib; sourceTree = "<group>"; };
 		B8DA2893204E7A68008566A6 /* EmptyCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionCell.swift; sourceTree = "<group>"; };
 		B8DA2894204E7A68008566A6 /* EmptyCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCollectionCell.xib; sourceTree = "<group>"; };
-		B8DC5BAF203E738B00149689 /* ShoppingItemForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemForm.swift; sourceTree = "<group>"; };
+		B8DC5BAF203E738B00149689 /* CheckItemFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckItemFormVC.swift; sourceTree = "<group>"; };
 		B8E8A2802042AC730005CCE8 /* AddItemToSectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToSectionVC.swift; sourceTree = "<group>"; };
 		B8E8A2822042ACBE0005CCE8 /* Items.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Items.storyboard; sourceTree = "<group>"; };
 		B8E8A2842043569C0005CCE8 /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 				B860E442202435CB0030FC04 /* Cells */,
 				B859622120218FF4007A8567 /* SpendingItemFormVC.swift */,
 				B8D08D652039088800E71724 /* AddSectionFormVC.swift */,
-				B8DC5BAF203E738B00149689 /* ShoppingItemForm.swift */,
+				B8DC5BAF203E738B00149689 /* CheckItemFormVC.swift */,
 				B8887D29204544E5008D8764 /* BudgetItemForm.swift */,
 				B8ED46352047948D00EE1A36 /* BudgetListBudgetFormVC.swift */,
 			);
@@ -841,7 +841,7 @@
 				B8E8A2852043569C0005CCE8 /* InsetTextField.swift in Sources */,
 				B8F375A5201E79A5000654AB /* AppDelegate.swift in Sources */,
 				B8D08D5E2038D6AB00E71724 /* AnimatedNavController.swift in Sources */,
-				B8DC5BB0203E738B00149689 /* ShoppingItemForm.swift in Sources */,
+				B8DC5BB0203E738B00149689 /* CheckItemFormVC.swift in Sources */,
 				B8DA2888204D1293008566A6 /* DashSectionHeader.swift in Sources */,
 				B8D08D662039088800E71724 /* AddSectionFormVC.swift in Sources */,
 				B81013BC20381E7A00F24A78 /* EmptyTableCell.swift in Sources */,

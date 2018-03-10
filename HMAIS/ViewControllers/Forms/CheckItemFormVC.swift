@@ -24,6 +24,7 @@ class CheckItemFormVC: UIViewController {
             saveBtn.rx.tap.bind(onNext: {
                 guard
                     var item = self.editingItem,
+                    self.editingItem?.name != "",
                     let delegate = self.delegate,
                     let modal = self.parent as? ModalFormNav
                 else { return }
