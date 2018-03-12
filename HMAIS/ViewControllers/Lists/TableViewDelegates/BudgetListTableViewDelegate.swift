@@ -108,9 +108,7 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
             viewController?.showBudgetItemForm(forItem: item, inSection: nil)
         } else {
             viewController?.showBudgetItemForm(forItem: item, inSection: sections[indexPath.section - 1])
-        }
-        
-        
+        }   
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -118,6 +116,16 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
             return 0.001
         }
         return 40
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.9371530414, green: 0.9373135567, blue: 0.9371429086, alpha: 1)
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 4
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
