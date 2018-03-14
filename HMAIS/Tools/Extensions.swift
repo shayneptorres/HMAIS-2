@@ -103,6 +103,25 @@ extension UIView {
         self.layer.mask = maskLayer1
         
     }
+    
+    func applyTransform(type: UIViewTransformType, animated: Bool, duration: TimeInterval) {
+        var transform = CGAffineTransform()
+        switch type {
+        case .restore:
+            transform = CGAffineTransform.identity
+        case .shrink:
+            transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+        
+        let time = animated ? duration : 0.0
+        
+        UIView.animate(withDuration: time, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+                self.transform = transform
+            }, completion: { _ in
+            
+            })
+    }
+    
 }
 
 extension UIResponder {

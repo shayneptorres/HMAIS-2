@@ -62,6 +62,10 @@ class BudgetListSummaryCell: UITableViewCell {
         
         let tap = UITapGestureRecognizer()
         tap.rx.event.bind(onNext: { tap in
+            self.container.applyTransform(type: .shrink, animated: true, duration: 0.3)
+            Timer.after(0.1) {
+                self.container.applyTransform(type: .restore, animated: true, duration: 0.3)
+            }
             completion?()
         }).disposed(by: trash)
         self.container.addGestureRecognizer(tap)
