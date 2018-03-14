@@ -69,7 +69,10 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
         
         if indexPath.section == 0 {
             let summaryCell = tableView.dequeueReusableCell(withIdentifier: CellID.budgetListSummaryCell.rawValue) as! BudgetListSummaryCell
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
             summaryCell.configure(withList: list) {
+                generator.notificationOccurred(.success)
                 self.viewController?.showEditBudgetVC()
             }
             return summaryCell
@@ -85,17 +88,26 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
             } else {
                 // else return the budget item cell for the item at the specified index path
                 let budgetCell = tableView.dequeueReusableCell(withIdentifier: CellID.budgetItemCell.rawValue) as! BudgetItemCell
-                budgetCell.configure(withItem: data[indexPath.row])
+                budgetCell.configure(withItem: data[indexPath.row]) {
+                    self.viewController?.showBudgetItemForm(forItem: self.data[indexPath.row], inSection: nil)
+                }
                 cell = budgetCell
             }
         } else {
             // else return the budget item cell for the item at the specified index path
-            
             let budgetCell = tableView.dequeueReusableCell(withIdentifier: CellID.budgetItemCell.rawValue) as! BudgetItemCell
             let item = sections[indexPath.section - 1].getItems()[indexPath.row]
-            budgetCell.configure(withItem: item)
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
+            budgetCell.configure(withItem: item) {
+                generator.notificationOccurred(.success)
+                self.viewController?.showBudgetItemForm(forItem: item, inSection: self.sections[indexPath.section - 1])
+            }
             cell = budgetCell
         }
+        
+        cell.selectionStyle = .none
+        
         return cell
     }
     

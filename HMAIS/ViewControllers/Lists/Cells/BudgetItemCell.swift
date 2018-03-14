@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class BudgetItemCell: UITableViewCell {
 
@@ -15,8 +17,9 @@ class BudgetItemCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     
     var item: Item!
+    let trash = DisposeBag()
     
-    func configure(withItem item: Item) {
+    func configure(withItem item: Item, completion: (() -> ())?) {
         self.item = item
         nameLabel.text = item.name
         let currency = "\(item.price)".toCurrency()
@@ -28,6 +31,19 @@ class BudgetItemCell: UITableViewCell {
         
         container.layer.cornerRadius = 4
         container.applyShadow(.normal(.bottom))
+        
+        let tap = UITapGestureRecognizer()
+        
+        tap.rx.event.bind(onNext: { gesture in
+            self.applyTransform(type: .shrink, animated: true, duration: 0.3)
+            completion?()
+            Timer.after(0.1.second, {
+                self.applyTransform(type: .restore, animated: true, duration: 0.3)
+            })
+        })
+            .disposed(by: trash)
+        
+        self.container.addGestureRecognizer(tap)
     }
     
 }

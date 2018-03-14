@@ -50,11 +50,14 @@ class ListCollectionCell: UICollectionViewCell {
         }
         
         let tap = UITapGestureRecognizer()
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         
         tap.rx.event.bind(onNext: { event in
+            generator.notificationOccurred(.success)
             self.shrinkCell()
             self.tapCompletion?(list)
-            Timer.after(0.3.seconds) {
+            Timer.after(0.1.seconds) {
                 self.restoreCell()
             }
         })

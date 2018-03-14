@@ -107,3 +107,8 @@ enum ShadowDirection {
     case left
     case right
 }
+
+enum UIViewTransformType {
+    case restore
+    case shrink
+}
