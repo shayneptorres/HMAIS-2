@@ -24,6 +24,7 @@
 		B81013D62038C92B00F24A78 /* ListSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B81013D52038C92B00F24A78 /* ListSectionHeader.xib */; };
 		B84093612025408B0018C22E /* FormEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840935F2025408B0018C22E /* FormEntryCell.swift */; };
 		B84093622025408B0018C22E /* FormEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B84093602025408B0018C22E /* FormEntryCell.xib */; };
+		B8467875205ADE3900F4CE42 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8467874205ADE3900F4CE42 /* AppTabBarController.swift */; };
 		B859621A20217D8A007A8567 /* ListDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B859621920217D8A007A8567 /* ListDetailVC.swift */; };
 		B859621C20217D9A007A8567 /* ListDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = B859621B20217D9A007A8567 /* ListDetailVM.swift */; };
 		B859621E20218ED1007A8567 /* Forms.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B859621D20218ED1007A8567 /* Forms.storyboard */; };
@@ -121,6 +122,7 @@
 		B81013D52038C92B00F24A78 /* ListSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListSectionHeader.xib; sourceTree = "<group>"; };
 		B840935F2025408B0018C22E /* FormEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormEntryCell.swift; sourceTree = "<group>"; };
 		B84093602025408B0018C22E /* FormEntryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormEntryCell.xib; sourceTree = "<group>"; };
+		B8467874205ADE3900F4CE42 /* AppTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 		B859621920217D8A007A8567 /* ListDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailVC.swift; sourceTree = "<group>"; };
 		B859621B20217D9A007A8567 /* ListDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailVM.swift; sourceTree = "<group>"; };
 		B859621D20218ED1007A8567 /* Forms.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Forms.storyboard; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				B8FBFD2E2031459700F90B1A /* MiniForm.xib */,
 				B8E8A2842043569C0005CCE8 /* InsetTextField.swift */,
 				B8887D2B20454736008D8764 /* CurrencyTextField.swift */,
+				B8467874205ADE3900F4CE42 /* AppTabBarController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -840,6 +843,7 @@
 				B81013CF203833FC00F24A78 /* CheckItemCell.swift in Sources */,
 				B8E8A2852043569C0005CCE8 /* InsetTextField.swift in Sources */,
 				B8F375A5201E79A5000654AB /* AppDelegate.swift in Sources */,
+				B8467875205ADE3900F4CE42 /* AppTabBarController.swift in Sources */,
 				B8D08D5E2038D6AB00E71724 /* AnimatedNavController.swift in Sources */,
 				B8DC5BB0203E738B00149689 /* CheckItemFormVC.swift in Sources */,
 				B8DA2888204D1293008566A6 /* DashSectionHeader.swift in Sources */,

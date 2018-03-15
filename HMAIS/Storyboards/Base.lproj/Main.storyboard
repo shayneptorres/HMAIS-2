@@ -56,7 +56,9 @@
         <scene sceneID="eYV-TR-M48">
             <objects>
                 <navigationController id="VEr-4P-0Et" customClass="AnimatedNavController" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Lists" id="7pE-lX-gWt"/>
+                    <tabBarItem key="tabBarItem" title="Lists" image="list_icon" id="7pE-lX-gWt">
+                        <color key="badgeColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hl3-Kc-6Lp">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -72,15 +74,16 @@
             </objects>
             <point key="canvasLocation" x="473" y="391"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--App Tab Bar Controller-->
         <scene sceneID="dFE-US-AzU">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Dp5-73-CQm" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Dp5-73-CQm" customClass="AppTabBarController" customModule="HMAIS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RTs-st-gXB">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="xUc-Pl-5fR" kind="relationship" relationship="viewControllers" id="gYp-zk-Ecn"/>
@@ -127,7 +130,9 @@
         <scene sceneID="cxl-TR-dNQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xUc-Pl-5fR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" id="5xx-P6-k5K"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="home_icon" id="5xx-P6-k5K">
+                        <color key="badgeColor" red="0.48311054710000001" green="0.83507496120000002" blue="0.006270377897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o1U-16-Pyd">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -143,4 +148,8 @@
             <point key="canvasLocation" x="472" y="-298.65067466266868"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home_icon" width="37" height="26"/>
+        <image name="list_icon" width="20" height="25"/>
+    </resources>
 </document>
