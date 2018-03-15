@@ -206,9 +206,16 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        if destinationIndexPath.section == 0 {
+            tableView.reloadData()
+            return
+        }
+        
         if sections.isEmpty {
             
         } else {
+            
             var item = sections[sourceIndexPath.section - 1].getItems().sorted(by: {i1, i2 in i1.createdAt > i2.createdAt })[sourceIndexPath.row]
             let sectionID = sections[destinationIndexPath.section - 1].id
             item.update(completion: { updatedItem in
@@ -216,5 +223,4 @@ class BudgetListTableViewDelegate: ListTableViewDelegate, UITableViewDelegate, U
             })
         }
     }
-    
 }

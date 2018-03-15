@@ -422,6 +422,8 @@ extension ListDetailVC: MiniFormDelegate {
         var translationY = -height + miniForm.frame.height + 5
         if Device.isPhoneX {
             translationY -= 20
+        } else {
+            translationY -= 50
         }
         
         // move the mini form up

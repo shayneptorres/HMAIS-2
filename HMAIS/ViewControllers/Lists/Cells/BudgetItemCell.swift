@@ -46,4 +46,30 @@ class BudgetItemCell: UITableViewCell {
         self.container.addGestureRecognizer(tap)
     }
     
+    /// https://stackoverflow.com/questions/8603359/change-default-icon-for-moving-cells-in-uitableview
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        if editing {
+            if var reorderView = findReorderViewInView(view: self),
+                let imageView = reorderView.subviews.filter({ $0 is UIImageView }).first as? UIImageView {
+                //                imageView.image = UIImage(named: "yourImage")
+                reorderView.backgroundColor = #colorLiteral(red: 0.9369999766, green: 0.9369999766, blue: 0.9369999766, alpha: 1)
+            }
+        }
+    }
+    
+    func findReorderViewInView(view: UIView) -> UIView? {
+        for subview in view.subviews {
+            
+            if String(describing: subview).range(of: "Reorder") != nil {
+                return subview
+            }
+            else {
+                findReorderViewInView(view: subview)
+            }
+        }
+        return nil
+    }
+    
 }
