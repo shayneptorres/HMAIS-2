@@ -15,7 +15,6 @@ class AppTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         self.tabBar.items?.enumerated().forEach({ index, _ in
             switch index {
