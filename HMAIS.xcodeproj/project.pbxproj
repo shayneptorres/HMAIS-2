@@ -46,6 +46,9 @@
 		B8887D2C20454736008D8764 /* CurrencyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8887D2B20454736008D8764 /* CurrencyTextField.swift */; };
 		B8887D2E20464017008D8764 /* BudgetListSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8887D2D20464017008D8764 /* BudgetListSectionHeader.swift */; };
 		B8887D302046407E008D8764 /* BudgetListSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8887D2F2046407E008D8764 /* BudgetListSectionHeader.xib */; };
+		B8B5E054208F0418005FE35D /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B5E053208F0418005FE35D /* OnboardingManager.swift */; };
+		B8B5E058208F0683005FE35D /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B5E057208F0683005FE35D /* App.swift */; };
+		B8B5E05A208F06A5005FE35D /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B5E059208F06A5005FE35D /* UserSettings.swift */; };
 		B8D08D5E2038D6AB00E71724 /* AnimatedNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D08D5D2038D6AB00E71724 /* AnimatedNavController.swift */; };
 		B8D08D602038D6F300E71724 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D08D5F2038D6F300E71724 /* TransitionAnimator.swift */; };
 		B8D08D622038D75900E71724 /* FadeTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D08D612038D75900E71724 /* FadeTransitionAnimator.swift */; };
@@ -144,6 +147,9 @@
 		B8887D2B20454736008D8764 /* CurrencyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTextField.swift; sourceTree = "<group>"; };
 		B8887D2D20464017008D8764 /* BudgetListSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListSectionHeader.swift; sourceTree = "<group>"; };
 		B8887D2F2046407E008D8764 /* BudgetListSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BudgetListSectionHeader.xib; sourceTree = "<group>"; };
+		B8B5E053208F0418005FE35D /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		B8B5E057208F0683005FE35D /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		B8B5E059208F06A5005FE35D /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		B8D08D5D2038D6AB00E71724 /* AnimatedNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedNavController.swift; sourceTree = "<group>"; };
 		B8D08D5F2038D6F300E71724 /* TransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
 		B8D08D612038D75900E71724 /* FadeTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -319,6 +325,9 @@
 				B87C1B26201F82CA00C9326E /* Enums.swift */,
 				B87C1B28201F852C00C9326E /* Protocol.swift */,
 				B860E447202439100030FC04 /* Extensions.swift */,
+				B8B5E053208F0418005FE35D /* OnboardingManager.swift */,
+				B8B5E057208F0683005FE35D /* App.swift */,
+				B8B5E059208F06A5005FE35D /* UserSettings.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -833,6 +842,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8B5E054208F0418005FE35D /* OnboardingManager.swift in Sources */,
 				B81013C62038326C00F24A78 /* ListTableViewDelegate.swift in Sources */,
 				B8887D2A204544E5008D8764 /* BudgetItemForm.swift in Sources */,
 				B8D08D602038D6F300E71724 /* TransitionAnimator.swift in Sources */,
@@ -855,9 +865,11 @@
 				B8E8A28F204511560005CCE8 /* AlertCreator.swift in Sources */,
 				B859621C20217D9A007A8567 /* ListDetailVM.swift in Sources */,
 				B87C1B27201F82CA00C9326E /* Enums.swift in Sources */,
+				B8B5E05A208F06A5005FE35D /* UserSettings.swift in Sources */,
 				B860E448202439100030FC04 /* Extensions.swift in Sources */,
 				B84093612025408B0018C22E /* FormEntryCell.swift in Sources */,
 				B87C1B25201F826E00C9326E /* List.swift in Sources */,
+				B8B5E058208F0683005FE35D /* App.swift in Sources */,
 				B87C1B3A20203EBB00C9326E /* ListsVC.swift in Sources */,
 				B859621A20217D8A007A8567 /* ListDetailVC.swift in Sources */,
 				B87C1B3C20203ED300C9326E /* ListsVM.swift in Sources */,
