@@ -207,6 +207,25 @@ class ListDetailVC: UIViewController, TableViewManager, KeyboardObserver, ModalP
         observeKeyboard()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard !App.onboardingManager.shouldShowOnboarding(forView: .listDetails) else { return }
+        
+        Timer.after(1.second) {
+            let actionSheetCreator = ActionSheetCreator(viewController: self)
+            
+            let actions = [
+                UIAlertAction(title: "Got it", style: .cancel, handler: nil)
+            ]
+            
+            actionSheetCreator.createActionSheet(withTitle: "This is the List Details",
+                                                 message: "Here you can add different items to your list. If you created at Budget list, you can add items with prices and even set a budget. If you created a checklist, you can add simple items that can be completed",
+                                                 withActions: actions)
+            App.onboardingManager.didShowOnboarding(forView: .listDetails)
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
