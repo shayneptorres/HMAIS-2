@@ -95,6 +95,21 @@ class ListsVC: UIViewController, TableViewManager, KeyboardObserver {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.viewModel.inputs.viewDidLoad()
+        
+        guard !App.onboardingManager.shouldShowOnboarding(forView: .lists) else { return }
+        
+        Timer.after(1.second) {
+            let actionSheetCreator = ActionSheetCreator(viewController: self)
+            
+            let actions = [
+                UIAlertAction(title: "Got it", style: .cancel, handler: nil)
+            ]
+            
+            actionSheetCreator.createActionSheet(withTitle: "Welcome to your lists!",
+                                                 message: "This is where all of your lists are located!\n\n There are two types of lists you can create:\n\n'Budget Lists' which allow you to track spending...\n\n and 'Check Lists' which allow you to track the progess of a collection of items. Go ahead and try adding a list!",
+                                                 withActions: actions)
+            App.onboardingManager.didShowOnboarding(forView: .lists)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
