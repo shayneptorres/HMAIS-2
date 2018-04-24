@@ -106,7 +106,7 @@ class ListsVC: UIViewController, TableViewManager, KeyboardObserver {
             ]
             
             actionSheetCreator.createActionSheet(withTitle: "Welcome to your lists!",
-                                                 message: "This is where all of your lists are located!\n\n There are two types of lists you can create:\n\n'Budget Lists' which allow you to track spending...\n\n and 'Check Lists' which allow you to track the progess of a collection of items. Go ahead and try adding a list!",
+                                                 message: "This is where all of your lists are located!\n\n There are two types of lists you can create:\n\n'Budget Lists' which allow you to track spending...\n\n 'Check Lists' which allow you to track the progess of a collection of items.\n\nGo ahead and try adding a list!",
                                                  withActions: actions)
             App.onboardingManager.didShowOnboarding(forView: .lists)
         }
