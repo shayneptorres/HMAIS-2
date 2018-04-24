@@ -79,6 +79,25 @@ class DashboardVC: UIViewController, ListObserverDelegate {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard !App.onboardingManager.shouldShowOnboarding(forView: .dashboard) else { return }
+        
+        Timer.after(1.second) {
+            let actionSheetCreator = ActionSheetCreator(viewController: self)
+            
+            let actions = [
+                UIAlertAction(title: "Got it", style: .cancel, handler: nil)
+            ]
+            
+            actionSheetCreator.createActionSheet(withTitle: "Welcome to How Much Am I Spending 2",
+                                                 message: "This is the newly renovated application.\n\n This screen is your dashboard. From here you can create new lists and keep track of recently used ones.\n\n Go ahead and add a list by tapping the green plus button on the top right of the screen!",
+                                                 withActions: actions)
+            App.onboardingManager.didShowOnboarding(forView: .dashboard)
+        }
+    }
+    
     func goToLists() {
         guard
             let tab = self.tabBarController,
