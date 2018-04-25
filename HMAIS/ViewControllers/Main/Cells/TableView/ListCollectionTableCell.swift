@@ -70,4 +70,8 @@ extension ListCollectionTableCell: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.cellTapCompletion?(data[indexPath.row])
+    }
+    
 }
